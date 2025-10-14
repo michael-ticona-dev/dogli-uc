@@ -18,10 +18,6 @@
 
 Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a los animales en situación de calle**. Usando tecnologías punteras como **Laravel**, **React**, y **MySQL**, conecta a **rescatistas, adoptantes y organizaciones protectoras** para crear una comunidad solidaria.
 
-<p align="center">
-  <img src="https://i.pinimg.com/originals/e6/29/49/e6294964e26db35f05e41e25e689b19d.gif" alt="Adopta una mascota" width="400" />
-</p>
-
 ---
 
 ## 🌟 Objetivos del proyecto
@@ -35,23 +31,21 @@ Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a l
 
 ## 🚀 Tecnologías principales
 
-| Categoría       | Tecnología                       |
-|-----------------|---------------------------------|
-| **Frontend**    | React + Vite + Framer Motion 🎬  |
-| **Backend**     | Laravel 11 (PHP 8.2+)           |
-| **Base de datos**| MySQL 8                        |
-| **Estilos**     | TailwindCSS + Shadcn/UI         |
-| **Autenticación**| Laravel Sanctum / JWT          |
-| **Servidor**    | PHP Artisan + Vite              |
+| Categoría           | Tecnología                      |
+|---------------------|--------------------------------|
+| **Frontend**        | React + Vite                   |
+| **Backend**         | Laravel 11 (PHP 8.2+)          |
+| **Base de datos**   | MySQL 8                        |
+| **Estilos**         | TailwindCSS + Shadcn/UI        |
+| **Autenticación**   | Laravel Sanctum / JWT          |
+| **Servidor**        | PHP Artisan + Vite             |
 | **Control de versiones** | Git + GitHub              |
-| **CI/CD**       | GitHub Actions                 |
-| **Despliegue**  | Render / Vercel / Laravel Forge |
+| **CI/CD**           | GitHub Actions                 |
+| **Despliegue**      | Render / Vercel / Laravel Forge|
 
 ---
 
 ## 🧩 Características principales
-
-<div align="center">
 
 | Icono | Funcionalidad                                  |
 |-------|-----------------------------------------------|
@@ -64,23 +58,6 @@ Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a l
 | 📱    | **Interfaz responsiva:** diseñada para móviles y tablets. |
 | ⚙️    | **Validaciones seguras:** formularios robustos y amigables. |
 | 📊    | **Estadísticas:** visualiza métricas de adopción y actividad. |
-
-</div>
-
----
-
-## 🎨 Animaciones y UX
-
-Para ofrecer una experiencia fluida y dinámica, utilizamos:
-
-- **Framer Motion** para animaciones suaves en botones, modales y transiciones.
-- **Skeleton Loaders** para mejorar la percepción de carga.
-- **Hover Effects** en tarjetas de mascotas y botones.
-- **Transiciones de página** con React Router para una navegación sin interrupciones.
-
-<p align="center">
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Smooth animations" width="400" />
-</p>
 
 ---
 
@@ -95,7 +72,7 @@ Seguimos el flujo **GitHub Flow** con ramas protegidas para garantizar calidad y
 | `rama-josua`   | Frontend Developer                  |
 | `rama-gerardo` | UX/UI Designer                     |
 | `rama-david`   | Backend Developer                  |
-| `rama-li`      | QA y Documentación (el más vago)  |
+| `rama-li`      | QA y Documentación                 |
 
 ### 🚀 Flujo de desarrollo
 
