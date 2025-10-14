@@ -57,7 +57,7 @@ El proyecto sigue una estrategia de **ramas protegidas** basada en GitHub Flow:
 | `rama-josua` | Frontend Developer |
 | `rama-gerardo` | Backend Developer |
 | `rama-david` | UX/UI Designer |
-| `rama-li` | QA y Documentación |
+| `rama-li` | QA y Documentación | el mas vago de vagos |
 
 ### 🚀 Flujo de desarrollo
 
