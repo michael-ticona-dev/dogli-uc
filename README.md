@@ -1,105 +1,85 @@
-# 🐶 Dogli UC
-
+🐶 Dogli UC
 <div align="center">
+https://via.placeholder.com/200x200/4F46E5/FFFFFF?text=%F0%9F%90%B6 <!-- Logo temporal - reemplazar con PNG real -->
 
-![Dogli UC Logo](https://i.pinimg.com/1200x/4d/b3/12/4db31216d1d8ce1278805e90396f4985.jpg) <!-- Cambia por logo real -->
+Tu plataforma moderna para la adopción responsable de mascotas
 
-**¡Tu plataforma moderna para la adopción responsable de mascotas!**
-
-[![GitHub Repo stars](https://img.shields.io/github/stars/tu-usuario/dogli-uc?style=social)](https://github.com/tu-usuario/dogli-uc/stargazers)
-[![License](https://img.shields.io/github/license/tu-usuario/dogli-uc)](LICENSE)
-[![Build Status](https://github.com/tu-usuario/dogli-uc/actions/workflows/ci.yml/badge.svg)](https://github.com/tu-usuario/dogli-uc/actions)
+https://img.shields.io/github/stars/tu-usuario/dogli-uc?style=social
+https://img.shields.io/github/license/tu-usuario/dogli-uc
+https://github.com/tu-usuario/dogli-uc/actions/workflows/ci.yml/badge.svg
+https://img.shields.io/badge/React-18.2+-61DAFB?logo=react
+https://img.shields.io/badge/Laravel-11-FF2D20?logo=laravel
 
 </div>
-
----
-
-## ✨ ¿Qué es **Dogli UC**?
-
-Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a los animales en situación de calle**. Usando tecnologías punteras como **Laravel**, **React**, y **MySQL**, conecta a **rescatistas, adoptantes y organizaciones protectoras** para crear una comunidad solidaria.
-
-<p align="center">
-  <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" alt="Adopta una mascota" width="400" />
-</p>
-
----
-
-## 🌟 Objetivos del proyecto
-
-- 🐕 Promover la **adopción responsable** y combatir el abandono.
-- 📲 Crear una plataforma **intuitiva y accesible** para todos los usuarios.
-- 💬 Facilitar la **comunicación segura** entre adoptantes y rescatistas.
-- 🚀 Usar tecnologías **modernas, escalables y seguras** para el mejor rendimiento.
-
----
-
-## 🚀 Tecnologías principales
-
-| Categoría       | Tecnología                       |
-|-----------------|---------------------------------|
-| **Frontend**    | React + Vite + Framer Motion 🎬  |
-| **Backend**     | Laravel 11 (PHP 8.2+)           |
-| **Base de datos**| MySQL 8                        |
-| **Estilos**     | TailwindCSS + Shadcn/UI         |
-| **Autenticación**| Laravel Sanctum / JWT          |
-| **Servidor**    | PHP Artisan + Vite              |
-| **Control de versiones** | Git + GitHub              |
-| **CI/CD**       | GitHub Actions                 |
-| **Despliegue**  | Render / Vercel / Laravel Forge |
-
----
-
-## 🧩 Características principales
+✨ ¿Qué es Dogli UC?
+Dogli UC es una plataforma web revolucionaria diseñada para dar voz y hogar a los animales en situación de calle. Utilizando tecnologías de vanguardia como Laravel, React, y MySQL, conectamos a rescatistas, adoptantes y organizaciones protectoras para crear una comunidad solidaria y comprometida.
 
 <div align="center">
-
-| Icono | Funcionalidad                                  |
-|-------|-----------------------------------------------|
-| 🐾    | **Gestión de animales:** registro, edición y adopción. |
-| 📸    | **Galería de imágenes:** fotos optimizadas y subida sencilla. |
-| 👤    | **Sistema de usuarios:** roles (admin, rescatista, adoptante). |
-| 💬    | **Mensajería interna:** chat seguro entre usuarios. |
-| 📍    | **Geolocalización:** descubre mascotas cercanas. |
-| 🧠    | **Panel administrativo:** control total sobre contenido y usuarios. |
-| 📱    | **Interfaz responsiva:** diseñada para móviles y tablets. |
-| ⚙️    | **Validaciones seguras:** formularios robustos y amigables. |
-| 📊    | **Estadísticas:** visualiza métricas de adopción y actividad. |
+https://via.placeholder.com/800x400/6366F1/FFFFFF?text=Dogli+UC+-+Conectando+Corazones+con+Hogares
 
 </div>
+🎯 Objetivos Estratégicos
+Objetivo	Descripción
+🐕 Adopción Responsable	Promover procesos de adopción seguros y conscientes
+📱 Experiencia Intuitiva	Interfaz accesible para todos los usuarios
+🔒 Comunicación Segura	Canal seguro entre adoptantes y rescatistas
+🚀 Tecnología Avanzada	Stack moderno, escalable y de alto rendimiento
+🛠 Arquitectura Tecnológica
+<div align="center">
+Capa	Tecnologías	Propósito
+Frontend	React 18 + Vite + TypeScript	Interfaz dinámica y type-safe
+Animaciones	Framer Motion + React Spring	Experiencias fluidas y profesionales
+Estilos	TailwindCSS + Shadcn/UI	Diseño consistente y responsive
+Backend	Laravel 11 + PHP 8.2+	API robusta y segura
+Base de Datos	MySQL 8 + Eloquent ORM	Gestión eficiente de datos
+Autenticación	Laravel Sanctum + JWT	Seguridad de primer nivel
+DevOps	GitHub Actions + Docker	CI/CD automatizado
+</div>
+⚡ Características Principales
+<div align="center">
+Módulo	Funcionalidades	Estado
+🐾 Gestión Animal	Registro, edición, historial médico, proceso de adopción	✅
+📸 Galería Multimedia	Subida optimizada, compresión, galería responsive	✅
+👥 Sistema de Usuarios	Roles (Admin, Rescatista, Adoptante), perfiles	✅
+💬 Mensajería	Chat en tiempo real, notificaciones push	🚧
+📍 Geolocalización	Mascotas cercanas, mapas interactivos	✅
+📊 Analytics	Dashboard admin, métricas, reportes	🚧
+📱 PWA	Instalación móvil, offline support	🔄
+</div>
+🎨 Experiencia de Usuario & Animaciones
+Implementamos animaciones profesionales para una experiencia premium:
 
----
+Micro-interacciones con Framer Motion para feedback táctil
 
-## 🎨 Animaciones y UX
+Page Transitions con react-router y AnimatePresence
 
-Para ofrecer una experiencia fluida y dinámica, utilizamos:
+Staggered Animations en listas y grids
 
-- **Framer Motion** para animaciones suaves en botones, modales y transiciones.
-- **Skeleton Loaders** para mejorar la percepción de carga.
-- **Hover Effects** en tarjetas de mascotas y botones.
-- **Transiciones de página** con React Router para una navegación sin interrupciones.
+Lazy Loading con skeleton screens elegantes
 
-<p align="center">
-  <img src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif" alt="Smooth animations" width="400" />
-</p>
+Hover Effects sutiles y profesionales
 
----
+<div align="center">
+https://via.placeholder.com/600x300/8B5CF6/FFFFFF?text=Animaciones+Profesionales+-+Experiencia+Fluida
 
-## 🧠 Flujo de trabajo con Git y ramas
+</div>
+🔄 Flujo de Desarrollo Git
+Seguimos metodologías ágiles con Git Flow para garantizar calidad y estabilidad.
 
-Seguimos el flujo **GitHub Flow** con ramas protegidas para garantizar calidad y control.
-
-| Rama           | Descripción                          |
-|----------------|------------------------------------|
-| `main`         | Rama principal, solo merges aprobados. |
-| `rama-michael` | Full Stack / Líder                  |
-| `rama-josua`   | Frontend Developer                  |
-| `rama-gerardo` | UX/UI Designer                     |
-| `rama-david`   | Backend Developer                  |
-| `rama-li`      | QA y Documentación (el más vago)  |
-
-### 🚀 Flujo de desarrollo
-
-1. Actualiza tu rama principal:
-   ```bash
-   git checkout main
-   git pull origin main
+🌿 Estructura de Ramas
+<div align="center">
+Rama	Responsable	Función
+main	Protected	Releases estables
+develop	Integration	Desarrollo activo
+feature/	Todos	Nuevas funcionalidades
+hotfix/	Asignado	Correcciones críticas
+</div>
+👥 Equipo & Responsabilidades
+<div align="center">
+Miembro	Rol	Rama Principal	Especialidad
+Michael	Tech Lead	feature/michael	Arquitectura Full Stack
+Josua	Frontend Lead	feature/josua	React & UX Implementation
+Gerardo	UI/UX Designer	feature/gerardo	Design System & Prototyping
+David	Backend Specialist	feature/david	Laravel & API Development
+Li	QA & Docs	feature/li	Testing & Documentation
+</div>
