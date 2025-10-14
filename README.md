@@ -1,17 +1,5 @@
 # 🐶 Dogli UC
 
-<div align="center">
-
-![Dogli UC Logo](https://i.imgur.com/4yX1FZx.png) <!-- Cambia por logo real -->
-
-**¡Tu plataforma moderna para la adopción responsable de mascotas!**
-
-[![GitHub Repo stars](https://img.shields.io/github/stars/tu-usuario/dogli-uc?style=social)](https://github.com/tu-usuario/dogli-uc/stargazers)
-[![License](https://img.shields.io/github/license/tu-usuario/dogli-uc)](LICENSE)
-[![Build Status](https://github.com/tu-usuario/dogli-uc/actions/workflows/ci.yml/badge.svg)](https://github.com/tu-usuario/dogli-uc/actions)
-
-</div>
-
 ---
 
 ## ✨ ¿Qué es **Dogli UC**?
