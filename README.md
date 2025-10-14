@@ -19,7 +19,7 @@
 Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a los animales en situación de calle**. Usando tecnologías punteras como **Laravel**, **React**, y **MySQL**, conecta a **rescatistas, adoptantes y organizaciones protectoras** para crear una comunidad solidaria.
 
 <p align="center">
-  <img src="https://media.giphy.com/media/3o7btPCcdNniyf0ArS/giphy.gif" alt="Adopta una mascota" width="400" />
+  <img src="https://i.pinimg.com/originals/e6/29/49/e6294964e26db35f05e41e25e689b19d.gif" alt="Adopta una mascota" width="400" />
 </p>
 
 ---
