@@ -33,7 +33,7 @@
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
 
-        <p>Probando PUSH - Gerardo</p>
+        <p>Probando PUSH - Gerardo to pape</p>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
