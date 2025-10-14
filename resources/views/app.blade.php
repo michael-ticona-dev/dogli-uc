@@ -19,6 +19,7 @@
             })();
         </script>
 
+
         {{-- Inline style to set the HTML background color based on our theme in app.css --}}
         <style>
             html {
@@ -31,6 +32,8 @@
         </style>
 
         <title inertia>{{ config('app.name', 'Laravel') }}</title>
+
+        <p>Probando PUSH - Gerardo to pape</p>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
