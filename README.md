@@ -55,8 +55,8 @@ El proyecto sigue una estrategia de **ramas protegidas** basada en GitHub Flow:
 | `main` | Rama principal protegida (solo merges aprobados vía Pull Request) |
 | `rama-michael` | Desarrollador Full Stack / Líder |
 | `rama-josua` | Frontend Developer |
-| `rama-gerardo` | Backend Developer |
-| `rama-david` | UX/UI Designer |
+| `rama-gerardo` | UX/UI Designer | 
+| `rama-david` | Backend Developer |
 | `rama-li` | QA y Documentación ---- el mas vago de vagos |
 
 ### 🚀 Flujo de desarrollo
