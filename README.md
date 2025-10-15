@@ -1,70 +1,67 @@
 # 🐶 Dogli UC
 
----
-
-## ✨ ¿Qué es **Dogli UC**?
-
-Dogli UC es una plataforma web revolucionaria, creada para **dar voz y hogar a los animales en situación de calle**. Usando tecnologías punteras como **Laravel**, **React**, y **MySQL**, conecta a **rescatistas, adoptantes y organizaciones protectoras** para crear una comunidad solidaria.
+**Dogli UC** es una plataforma web moderna enfocada en la **adopción responsable de animales en situación de calle**, desarrollada con **Laravel**, **React**, y **MySQL**.  
+Su propósito es conectar a **rescatistas, adoptantes y organizaciones protectoras**, fomentando una comunidad digital donde cada mascota tenga una oportunidad de encontrar un hogar.
 
 ---
 
 ## 🌟 Objetivos del proyecto
 
-- 🐕 Promover la **adopción responsable** y combatir el abandono.
-- 📲 Crear una plataforma **intuitiva y accesible** para todos los usuarios.
-- 💬 Facilitar la **comunicación segura** entre adoptantes y rescatistas.
-- 🚀 Usar tecnologías **modernas, escalables y seguras** para el mejor rendimiento.
+- Promover la **adopción responsable** y reducir el abandono animal.  
+- Brindar una **plataforma intuitiva y accesible** para gestionar adopciones.  
+- Facilitar la **interacción entre adoptantes y rescatistas** mediante herramientas seguras.  
+- Implementar **tecnologías modernas y escalables** que garanticen un rendimiento óptimo.
 
 ---
 
 ## 🚀 Tecnologías principales
 
-| Categoría           | Tecnología                      |
-|---------------------|--------------------------------|
-| **Frontend**        | React + Vite                   |
-| **Backend**         | Laravel 11 (PHP 8.2+)          |
-| **Base de datos**   | MySQL 8                        |
-| **Estilos**         | TailwindCSS + Shadcn/UI        |
-| **Autenticación**   | Laravel Sanctum / JWT          |
-| **Servidor**        | PHP Artisan + Vite             |
-| **Control de versiones** | Git + GitHub              |
-| **CI/CD**           | GitHub Actions                 |
-| **Despliegue**      | Render / Vercel / Laravel Forge|
+| Categoría | Tecnología |
+|------------|-------------|
+| **Frontend** | React + Vite |
+| **Backend** | Laravel 11 (PHP 8.2+) |
+| **Base de datos** | MySQL 8 |
+| **Estilos** | TailwindCSS + Shadcn/UI |
+| **Autenticación** | Laravel Sanctum / JWT |
+| **Servidor de desarrollo** | PHP Artisan + Vite |
+| **Control de versiones** | Git + GitHub |
+| **CI/CD** | GitHub Actions |
+| **Despliegue** | Render / Vercel / Laravel Forge |
 
 ---
 
 ## 🧩 Características principales
 
-| Icono | Funcionalidad                                  |
-|-------|-----------------------------------------------|
-| 🐾    | **Gestión de animales:** registro, edición y adopción. |
-| 📸    | **Galería de imágenes:** fotos optimizadas y subida sencilla. |
-| 👤    | **Sistema de usuarios:** roles (admin, rescatista, adoptante). |
-| 💬    | **Mensajería interna:** chat seguro entre usuarios. |
-| 📍    | **Geolocalización:** descubre mascotas cercanas. |
-| 🧠    | **Panel administrativo:** control total sobre contenido y usuarios. |
-| 📱    | **Interfaz responsiva:** diseñada para móviles y tablets. |
-| ⚙️    | **Validaciones seguras:** formularios robustos y amigables. |
-| 📊    | **Estadísticas:** visualiza métricas de adopción y actividad. |
+- 🐾 **Gestión de animales:** registro, edición y adopción de mascotas.
+- 📸 **Galería de imágenes:** subida y vista de fotos optimizadas.
+- 👤 **Sistema de usuarios:** roles de administrador, rescatista y adoptante.
+- 💬 **Mensajería interna:** comunicación entre usuarios.
+- 📍 **Geolocalización:** ver mascotas disponibles cercanas.
+- 🧠 **Panel administrativo:** control de publicaciones, usuarios y reportes.
+- 📱 **Interfaz responsiva:** adaptable a móviles y tablets.
+- ⚙️ **Validaciones seguras:** formularios con reglas de negocio sólidas.
+- 📊 **Estadísticas:** panel con métricas de adopción y actividad.
 
 ---
 
 ## 🧠 Flujo de trabajo con Git y ramas
 
-Seguimos el flujo **GitHub Flow** con ramas protegidas para garantizar calidad y control.
+El proyecto sigue una estrategia de **ramas protegidas** basada en GitHub Flow:
+
+### 🌿 Estructura de ramas
 
 | Rama           | Descripción                          |
 |----------------|------------------------------------|
 | `main`         | Rama principal, solo merges aprobados. |
-| `rama-michael` | Full Stack / Líder                  |
+| `rama-michael` | Full Stack / <span style="color:purple">Senior</span> |
 | `rama-josua`   | Frontend Developer                  |
 | `rama-gerardo` | UX/UI Designer                     |
-| `rama-david`   | Backend Developer                  |
+| `rama-david`   | Backend / <span style="color:purple">Senior</span> |
 | `rama-li`      | QA y Documentación                 |
 
 ### 🚀 Flujo de desarrollo
 
-1. Actualiza tu rama principal:
+1. Asegúrate de tener la última versión de `main`:
    ```bash
    git checkout main
    git pull origin main
