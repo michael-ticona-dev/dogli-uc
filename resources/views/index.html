@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GameStory - Plataforma de Juegos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6a4cff;
+            --secondary: #2d1b69;
+            --accent: #ff6b6b;
+            --dark-bg: #121212;
+            --card-bg: #1e1e2e;
+            --text: #e6e6ff;
+            --light-purple: #a594f9;
+            --success: #4cd964;
+            --warning: #ffcc00;
+            --danger: #ff3b30;
+            --gray: #8a8a9a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text);
+            display: flex;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .sidebar {
+            width: 250px;
+            background-color: var(--secondary);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            color: var(--light-purple);
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-item {
+            padding: 12px 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item.active {
+            background-color: var(--primary);
+        }
+
+        .nav-item:hover:not(.active) {
+            background-color: rgba(106, 76, 255, 0.2);
+        }
+
+        .nav-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 30px;
+            margin-left: 250px;
+            overflow-y: auto;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .search-bar {
+            background-color: var(--card-bg);
+            border-radius: 20px;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            width: 400px;
+        }
+
+        .search-bar input {
+            background: transparent;
+            border: none;
+            color: var(--text);
+            margin-left: 10px;
+            width: 100%;
+            outline: none;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-actions i {
+            margin-left: 20px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .user-profile {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+        }
+
+        .featured-game {
+            background: linear-gradient(to right, var(--secondary), var(--primary));
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-content {
+            flex: 1;
+            z-index: 2;
+        }
+
+        .featured-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .featured-content p {
+            margin-bottom: 20px;
+            color: var(--light-purple);
+            max-width: 400px;
+        }
+
+        .price {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-2px);
+        }
+
+        .featured-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            z-index: 2;
+        }
+
+        .featured-image img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .section-title {
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .view-all {
+            color: var(--light-purple);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .game-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .game-image {
+            height: 120px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .game-info {
+            padding: 15px;
+        }
+
+        .game-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .game-category {
+            color: var(--gray);
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .game-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .play-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .accessories-section {
+            margin-bottom: 40px;
+        }
+
+        .accessories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .accessory-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .accessory-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .accessory-icon {
+            font-size: 30px;
+            margin-bottom: 10px;
+            color: var(--light-purple);
+        }
+
+        .accessory-name {
+            font-size: 14px;
+        }
+
+        .recent-plays {
+            margin-bottom: 40px;
+        }
+
+        .recent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .recent-card {
+            background-color: var(--card-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            display: flex;
+        }
+
+        .recent-image {
+            width: 80px;
+            background-color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .recent-info {
+            padding: 15px;
+            flex: 1;
+        }
+
+        .recent-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .recent-time {
+            color: var(--gray);
+            font-size: 12px;
+        }
+
+        .friends-section {
+            margin-bottom: 40px;
+        }
+
+        .friends-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .friend-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .friend-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .friend-name {
+            font-weight: bold;
+        }
+
+        .friend-status {
+            font-size: 12px;
+            color: var(--success);
+        }
+
+        .groups-section {
+            margin-bottom: 40px;
+        }
+
+        .groups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .group-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            padding: 15px;
+        }
+
+        .group-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .group-desc {
+            font-size: 12px;
+            color: var(--gray);
+        }
+
+        @media (max-width: 1100px) {
+            .sidebar {
+                width: 80px;
+                padding: 10px;
+            }
+            
+            .nav-item span {
+                display: none;
+            }
+            
+            .nav-item i {
+                margin-right: 0;
+                font-size: 20px;
+            }
+            
+            .main-content {
+                margin-left: 80px;
+            }
+            
+            .logo span {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .featured-game {
+                flex-direction: column;
+            }
+            
+            .featured-image {
+                justify-content: center;
+                margin-top: 20px;
+            }
+            
+            .search-bar {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <div class="logo"><i class="fas fa-gamepad"></i> <span>GameStory</span></div>
+        <div class="nav-item active">
+            <i class="fas fa-home"></i> <span>Home</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-dice"></i> <span>Games</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-coins"></i> <span>PushGelds</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-users"></i> <span>Antigovernants</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-cog"></i> <span>Settings</span>
+        </div>
+        <div class="nav-item">
+            <i class="fas fa-rocket"></i> <span>Boots...</span>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search games, friends, groups...">
+            </div>
+            <div class="user-actions">
+                <i class="fas fa-bell"></i>
+                <i class="fas fa-envelope"></i>
+                <div class="user-profile">
+                    <i class="fas fa-user"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="featured-game">
+            <div class="featured-content">
+                <h2>Emberk on the Craziest Journey of Your Life</h2>
+                <p>Embark on an epic adventure through mystical lands, battle formidable foes, and discover hidden treasures in this action-packed RPG.</p>
+                <div class="price">$34.99</div>
+                <button class="btn">Buy Now</button>
+            </div>
+            <div class="featured-image">
+                <div style="width: 300px; height: 180px; background: linear-gradient(135deg, #6a4cff, #ff6b6b); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 18px; font-weight: bold;">
+                    EMBERK GAME
+                </div>
+            </div>
+        </div>
+
+        <div class="trending-games">
+            <div class="section-title">
+                <span>Trending games</span>
+                <span class="view-all">View all <i class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="games-grid">
+                <div class="game-card">
+                    <div class="game-image" style="background: linear-gradient(135deg, #3498db, #2c3e50);">
+                        HUMANKIND
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">HUMANKIND</div>
+                        <div class="game-category">Strategy</div>
+                        <div class="game-actions">
+                            <button class="play-btn">Play</button>
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                        Hello Infinite
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Hello Infinite</div>
+                        <div class="game-category">FPS</div>
+                        <div class="game-actions">
+                            <button class="play-btn">Play</button>
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                        Humankind
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Humankind</div>
+                        <div class="game-category">Strategy</div>
+                        <div class="game-actions">
+                            <button class="play-btn">Play</button>
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="game-card">
+                    <div class="game-image" style="background: linear-gradient(135deg, #f39c12, #e67e22);">
+                        Bronxfort
+                    </div>
+                    <div class="game-info">
+                        <div class="game-title">Bronxfort</div>
+                        <div class="game-category">Battle Royale</div>
+                        <div class="game-actions">
+                            <button class="play-btn">Play</button>
+                            <i class="far fa-heart"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="accessories-section">
+            <div class="section-title">
+                <span>Accessories for GAMERS</span>
+                <span class="view-all">View all <i class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="accessories-grid">
+                <div class="accessory-card">
+                    <div class="accessory-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="accessory-name">Gaming Headset</div>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">
+                        <i class="fas fa-keyboard"></i>
+                    </div>
+                    <div class="accessory-name">Mechanical Keyboard</div>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">
+                        <i class="fas fa-mouse"></i>
+                    </div>
+                    <div class="accessory-name">Gaming Mouse</div>
+                </div>
+                <div class="accessory-card">
+                    <div class="accessory-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="accessory-name">Controller</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-plays">
+            <div class="section-title">
+                <span>Recent plays</span>
+                <span class="view-all">View all <i class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="recent-grid">
+                <div class="recent-card">
+                    <div class="recent-image" style="background: linear-gradient(135deg, #3498db, #2c3e50);">
+                        HS
+                    </div>
+                    <div class="recent-info">
+                        <div class="recent-title">Hotshot Zero Down Screening</div>
+                        <div class="recent-time">2 hours ago</div>
+                    </div>
+                </div>
+                <div class="recent-card">
+                    <div class="recent-image" style="background: linear-gradient(135deg, #e74c3c, #c0392b);">
+                        COD
+                    </div>
+                    <div class="recent-info">
+                        <div class="recent-title">Café Of Duty</div>
+                        <div class="recent-time">5 hours ago</div>
+                    </div>
+                </div>
+                <div class="recent-card">
+                    <div class="recent-image" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                        CP
+                    </div>
+                    <div class="recent-info">
+                        <div class="recent-title">Cyberpunk 2017</div>
+                        <div class="recent-time">Yesterday</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="friends-section">
+            <div class="section-title">
+                <span>Friends online</span>
+                <span class="view-all">View all <i class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="friends-grid">
+                <div class="friend-card">
+                    <div class="friend-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="friend-name">Mr Solem</div>
+                        <div class="friend-status">Online</div>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <div class="friend-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="friend-name">Warmwater, Jack</div>
+                        <div class="friend-status">Playing Gold in Duty</div>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <div class="friend-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="friend-name">Dolly, Joel</div>
+                        <div class="friend-status">Online</div>
+                    </div>
+                </div>
+                <div class="friend-card">
+                    <div class="friend-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <div class="friend-name">Celine, Don</div>
+                        <div class="friend-status">Online</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="groups-section">
+            <div class="section-title">
+                <span>Groups</span>
+                <span class="view-all">View all <i class="fas fa-chevron-right"></i></span>
+            </div>
+            <div class="groups-grid">
+                <div class="group-card">
+                    <div class="group-name">Playzombieets</div>
+                    <div class="group-desc">All days off night</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">Godget zone</div>
+                    <div class="group-desc">We have changed</div>
+                </div>
+                <div class="group-card">
+                    <div class="group-name">McSolen</div>
+                    <div class="group-desc">Antoni USA</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Agregar interactividad básica
+        document.addEventListener('DOMContentLoaded', function() {
+            // Navegación de la barra lateral
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    navItems.forEach(i => i.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+            
+            // Efectos hover en tarjetas de juego
+            const gameCards = document.querySelectorAll('.game-card');
+            gameCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Botones de juego
+            const playButtons = document.querySelectorAll('.play-btn');
+            playButtons.forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.stopPropagation();
+                    alert('Starting game...');
+                });
+            });
+            
+            // Botón de compra del juego destacado
+            const buyButton = document.querySelector('.featured-content .btn');
+            buyButton.addEventListener('click', function() {
+                alert('Added to cart: Emberk on the Craziest Journey of Your Life - $34.99');
+            });
+        });
+    </script>
+</body>
+</html>

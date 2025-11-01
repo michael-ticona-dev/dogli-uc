@@ -1,0 +1,68 @@
+@import "./variables-globales-dogli-uc.css";
+
+.principal-header-costado {
+    position: fixed;
+    top: 12px;
+    left: 2rem;
+    bottom: 12px;
+    width: 16rem;
+    background: linear-gradient(150deg, var(--color-secundario-oscuro), var(--color-secundario-claro));
+    color: var(--color-blanco);
+    display: flex;
+    flex-direction: column;
+    padding: var(--espacio-lg);
+    gap: var(--espacio-md);
+    z-index: var(--z-index-fixed);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    border-radius: var(--radio-borde-2xl);
+    max-height: calc(100vh - 24px);
+    overflow-y: auto;
+    transition: all var(--duracion-transicion-normal) var(--funcion-timing-ease);
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.principal-header-costado .header-logo {
+    font-size: var(--tamaño-texto-2xl);
+    font-weight: var(--peso-fuente-bold);
+    margin-bottom: var(--espacio-lg);
+    text-align: center;
+    color: var(--color-primario-claro);
+}
+
+.principal-header-costado .header-nav {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-sm);
+}
+
+.principal-header-costado .header-nav a {
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radio-borde-md);
+    transition: all var(--duracion-transicion-normal) var(--funcion-timing-ease);
+}
+
+.principal-header-costado .header-nav a:hover {
+    background: linear-gradient(90deg, var(--color-primario-claro), var(--color-acento));
+    color: var(--color-blanco);
+    transform: scale(var(--escala-hover));
+}
+
+.principal-header-costado .btn-publicar {
+    margin-top: auto;
+    padding: 0.6rem 1.2rem;
+    background: linear-gradient(135deg, var(--color-acento), var(--color-acento-claro));
+    color: var(--color-blanco);
+    text-align: center;
+    font-weight: var(--peso-fuente-semibold);
+    border-radius: var(--radio-borde-2xl);
+    transition: all var(--duracion-transicion-normal) var(--funcion-timing-ease);
+    margin-bottom: 2rem;
+}
+
+.principal-header-costado .btn-publicar:hover {
+    background: linear-gradient(135deg, var(--color-acento-claro), var(--color-primario-claro));
+    transform: scale(var(--escala-hover));
+}

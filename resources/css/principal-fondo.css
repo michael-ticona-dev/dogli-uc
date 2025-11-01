@@ -1,0 +1,6 @@
+@import "./variables-globales-dogli-uc.css";
+
+/*COLOR DE FONDO, >NEGRO< "NO TOQUES XD*/
+body {
+    background-color: var(--color-fondo);
+}

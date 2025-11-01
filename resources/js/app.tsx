@@ -1,19 +1,24 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+import Principal_Header_Superior from "./components/ui/principal-header-superior"; 
+import Principal_Header_Costado from "./components/ui/principal-header-costado";
+import Principal_Header_Carrusel from "./components/ui/principal-header-carrusel";
+
 
 const App = () => {
   return (
-    <div style={{ textAlign: "center", marginTop: "3rem" }}>
-      <h1>🚀 React conectado con Laravel correctamente</h1>
-      <p>Si ves este mensaje, el frontend está funcionando.</p>
-    </div>
+    <>
+      <Principal_Header_Superior /> 
+      <Principal_Header_Costado />
+      <Principal_Header_Carrusel />
+    </>
   );
 };
 
-// Montar React en el div del Blade (app.blade.php)
-const rootElement = document.getElementById("root");
-if (rootElement) {
-  createRoot(rootElement).render(
+const container = document.getElementById("root");
+if (container) {
+  const root = createRoot(container);
+  root.render(
     <React.StrictMode>
       <App />
     </React.StrictMode>

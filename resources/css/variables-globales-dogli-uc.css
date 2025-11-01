@@ -1,0 +1,211 @@
+:root {
+    /*COLOR DE FONDO*/
+    --color-fondo: black;
+
+    /* ===== PALETA DE COLORES PRINCIPALES ===== */
+    --color-primario: #6a4cff;
+    --color-primario-oscuro: #5a3ce6;
+    --color-primario-claro: #7b5cff;
+    --color-primario-suave: rgba(106, 76, 255, 0.1);
+    --color-primario-transparente: rgba(106, 76, 255, 0.7);
+  
+    --color-secundario: #2d1b69;
+    --color-secundario-oscuro: #1f1047;
+    --color-secundario-claro: #3d258b;
+    --color-secundario-suave: rgba(45, 27, 105, 0.1);
+    
+    --color-acento: #ff6b6b;
+    --color-acento-oscuro: #e05555;
+    --color-acento-claro: #ff8181;
+    --color-acento-suave: rgba(255, 107, 107, 0.1);
+    
+    --color-complementario: #4cd964;
+    --color-complementario-oscuro: #3dc152;
+    --color-complementario-claro: #5fe073;
+    
+    /* ===== COLORES NEUTROS ===== */
+    --color-fondo-oscuro: #121212;
+    --color-fondo-oscuro-2: #1a1a1a;
+    --color-fondo-oscuro-3: #222222;
+    
+    --color-fondo-tarjeta: #1e1e2e;
+    --color-fondo-tarjeta-2: #252542;
+    --color-fondo-tarjeta-3: #2d2d4a;
+    
+    --color-texto: #e6e6ff;
+    --color-texto-secundario: #b8b8d6;
+    --color-texto-terciario: #8a8a9a;
+    --color-texto-deshabilitado: #666676;
+    
+    --color-borde: #333344;
+    --color-borde-claro: #444455;
+    --color-borde-oscuro: #222233;
+    
+    /* ===== COLORES DE ESTADO ===== */
+    --color-exito: #4cd964;
+    --color-exito-oscuro: #3dc152;
+    --color-exito-suave: rgba(76, 217, 100, 0.2);
+    
+    --color-advertencia: #ffcc00;
+    --color-advertencia-oscuro: #e6b800;
+    --color-advertencia-suave: rgba(255, 204, 0, 0.2);
+    
+    --color-peligro: #ff3b30;
+    --color-peligro-oscuro: #e63329;
+    --color-peligro-suave: rgba(255, 59, 48, 0.2);
+    
+    --color-info: #5ac8fa;
+    --color-info-oscuro: #4ab4e6;
+    --color-info-suave: rgba(90, 200, 250, 0.2);
+    
+    /* ===== COLORES ESPECIALES ===== */
+    --color-morado-claro: #a594f9;
+    --color-morado-oscuro: #8a77d6;
+    --color-morado-suave: rgba(165, 148, 249, 0.2);
+    
+    --color-azul-electrico: #007aff;
+    --color-azul-profundo: #0056b3;
+    --color-azul-suave: rgba(0, 122, 255, 0.2);
+    
+    --color-verde-esmeralda: #34c759;
+    --color-verde-forest: #228b22;
+    --color-verde-suave: rgba(52, 199, 89, 0.2);
+    
+    --color-naranja-vibrante: #ff9500;
+    --color-naranja-oscuro: #e68500;
+    --color-naranja-suave: rgba(255, 149, 0, 0.2);
+    
+    --color-rosa-neon: #ff2d55;
+    --color-rosa-oscuro: #e6244b;
+    --color-rosa-suave: rgba(255, 45, 85, 0.2);
+    
+    /* ===== COLORES BÁSICOS ===== */
+    --color-blanco: #ffffff;
+    --color-blanco-suave: rgba(255, 255, 255, 0.1);
+    --color-blanco-transparente: rgba(255, 255, 255, 0.7);
+    
+    --color-negro: #000000;
+    --color-negro-suave: rgba(0, 0, 0, 0.1);
+    --color-negro-transparente: rgba(0, 0, 0, 0.7);
+    
+    --color-gris: #8a8a9a;
+    --color-gris-claro: #a5a5b5;
+    --color-gris-oscuro: #6e6e7e;
+    
+    /* ===== GRADIENTES PREDEFINIDOS ===== */
+    --gradiente-primario: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    --gradiente-primario-invertido: linear-gradient(135deg, var(--color-secundario), var(--color-primario));
+    --gradiente-acento: linear-gradient(135deg, var(--color-acento), #ff5252);
+    --gradiente-morado: linear-gradient(135deg, var(--color-primario), var(--color-morado-claro));
+    --gradiente-exito: linear-gradient(135deg, var(--color-exito), var(--color-verde-forest));
+    --gradiente-fondo: linear-gradient(135deg, var(--color-fondo-oscuro), var(--color-fondo-oscuro-2));
+    --gradiente-tarjeta: linear-gradient(135deg, var(--color-fondo-tarjeta), var(--color-fondo-tarjeta-2));
+    
+    /* ===== SOMBRAS ===== */
+    --sombra-suave: 0 2px 8px rgba(0, 0, 0, 0.1);
+    --sombra-media: 0 4px 12px rgba(0, 0, 0, 0.15);
+    --sombra-intensa: 0 8px 24px rgba(0, 0, 0, 0.2);
+    --sombra-difusa: 0 2px 20px rgba(0, 0, 0, 0.1);
+    --sombra-interna: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+    --sombra-borde: 0 0 0 1px var(--color-borde);
+    --sombra-primaria: 0 4px 12px rgba(106, 76, 255, 0.3);
+    --sombra-acento: 0 4px 12px rgba(255, 107, 107, 0.3);
+    
+    /* ===== TIPOGRAFÍA ===== */
+    --fuente-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --fuente-secundaria: 'Arial', sans-serif;
+    --fuente-mono: 'Courier New', monospace;
+    
+    --tamaño-texto-xs: 0.75rem;    /* 12px */
+    --tamaño-texto-sm: 0.875rem;   /* 14px */
+    --tamaño-texto-base: 1rem;     /* 16px */
+    --tamaño-texto-lg: 1.125rem;   /* 18px */
+    --tamaño-texto-xl: 1.25rem;    /* 20px */
+    --tamaño-texto-2xl: 1.5rem;    /* 24px */
+    --tamaño-texto-3xl: 1.875rem;  /* 30px */
+    --tamaño-texto-4xl: 2.25rem;   /* 36px */
+    --tamaño-texto-5xl: 3rem;      /* 48px */
+    
+    --peso-fuente-ligero: 300;
+    --peso-fuente-normal: 400;
+    --peso-fuente-medio: 500;
+    --peso-fuente-semibold: 600;
+    --peso-fuente-bold: 700;
+    --peso-fuente-extrabold: 800;
+    
+    --interlineado-tight: 1.25;
+    --interlineado-normal: 1.5;
+    --interlineado-relaxed: 1.75;
+    
+    /* ===== ESPACIADO ===== */
+    --espacio-xs: 0.25rem;   /* 4px */
+    --espacio-sm: 0.5rem;    /* 8px */
+    --espacio-md: 1rem;      /* 16px */
+    --espacio-lg: 1.5rem;    /* 24px */
+    --espacio-xl: 2rem;      /* 32px */
+    --espacio-2xl: 3rem;     /* 48px */
+    --espacio-3xl: 4rem;     /* 64px */
+    --espacio-4xl: 6rem;     /* 96px */
+    
+    /* ===== BORDES Y RADIOS ===== */
+    --radio-borde-none: 0;
+    --radio-borde-sm: 4px;
+    --radio-borde-md: 8px;
+    --radio-borde-lg: 12px;
+    --radio-borde-xl: 16px;
+    --radio-borde-2xl: 24px;
+    --radio-borde-full: 50%;
+    --radio-borde-completo: 1000px;
+    
+    --grosor-borde-fino: 1px;
+    --grosor-borde-normal: 2px;
+    --grosor-borde-grueso: 4px;
+    
+    /* ===== TRANSICIONES Y ANIMACIONES ===== */
+    --duracion-transicion-rapida: 0.15s;
+    --duracion-transicion-normal: 0.3s;
+    --duracion-transicion-lenta: 0.5s;
+    --duracion-transicion-muy-lenta: 0.8s;
+    
+    --funcion-timing-ease: ease;
+    --funcion-timing-ease-in: ease-in;
+    --funcion-timing-ease-out: ease-out;
+    --funcion-timing-ease-in-out: ease-in-out;
+    --funcion-timing-linear: linear;
+    --funcion-timing-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    
+    --escala-hover: 1.05;
+    --escala-activo: 0.95;
+    
+    /* ===== Z-INDEX ===== */
+    --z-index-dropdown: 1000;
+    --z-index-sticky: 1020;
+    --z-index-fixed: 1030;
+    --z-index-modal: 1040;
+    --z-index-popover: 1050;
+    --z-index-tooltip: 1060;
+    --z-index-toast: 1070;
+    
+    /* ===== BREAKPOINTS ===== */
+    --breakpoint-movil: 640px;
+    --breakpoint-tablet: 768px;
+    --breakpoint-laptop: 1024px;
+    --breakpoint-desktop: 1280px;
+    --breakpoint-wide: 1536px;
+    
+    /* ===== OTROS ===== */
+    --opacidad-baja: 0.4;
+    --opacidad-media: 0.6;
+    --opacidad-alta: 0.8;
+    
+    --desenfoque-suave: blur(4px);
+    --desenfoque-medio: blur(8px);
+    --desenfoque-intenso: blur(16px);
+    
+    --ancho-maximo-contenedor: 1200px;
+    --ancho-maximo-texto: 65ch;
+    
+    --altura-header: 64px;
+    --altura-footer: 80px;
+    --altura-barra-lateral: 100vh;
+}
