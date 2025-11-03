@@ -1,67 +1,133 @@
-# 🐶 Dogli UC
+#!/bin/bash
 
-**Dogli UC** es una plataforma web moderna enfocada en la **adopción responsable de animales en situación de calle**, desarrollada con **Laravel**, **React**, y **MySQL**.  
-Su propósito es conectar a **rescatistas, adoptantes y organizaciones protectoras**, fomentando una comunidad digital donde cada mascota tenga una oportunidad de encontrar un hogar.
+# ======================================================
+# 🐶 DOGLI-UC - SCRIPT COMPLETO DE INICIALIZACIÓN Y FLUJO GIT
+# ======================================================
 
----
+echo "🚀 Iniciando configuración completa del proyecto DOGLI-UC..."
 
-## 🌟 Objetivos del proyecto
+# ------------------------------------------
+# Verificar dependencias
+# ------------------------------------------
+if ! command -v git &> /dev/null; then
+  echo "❌ Git no está instalado. Instálalo antes de continuar."
+  exit 1
+fi
 
-- Promover la **adopción responsable** y reducir el abandono animal.  
-- Brindar una **plataforma intuitiva y accesible** para gestionar adopciones.  
-- Facilitar la **interacción entre adoptantes y rescatistas** mediante herramientas seguras.  
-- Implementar **tecnologías modernas y escalables** que garanticen un rendimiento óptimo.
+if ! command -v gh &> /dev/null; then
+  echo "❌ GitHub CLI no está instalado. Instálalo con:"
+  echo "sudo apt install gh   # o brew install gh / winget install GitHub.cli"
+  exit 1
+fi
 
----
+# ------------------------------------------
+# Crear archivo README.md completo
+# ------------------------------------------
+cat > README.md << 'EOF'
+# 🐶 DOGLI-UC
 
-## 🚀 Tecnologías principales
+## 📘 Descripción
+Dogli-UC es un sistema de gestión y desarrollo colaborativo.  
+Este repositorio incluye una guía completa para trabajar en equipo con Git y GitHub.
 
-| Categoría | Tecnología |
-|------------|-------------|
-| **Frontend** | React + Vite |
-| **Backend** | Laravel 11 (PHP 8.2+) |
-| **Base de datos** | MySQL 8 |
-| **Estilos** | TailwindCSS + Shadcn/UI |
-| **Autenticación** | Laravel Sanctum / JWT |
-| **Servidor de desarrollo** | PHP Artisan + Vite |
-| **Control de versiones** | Git + GitHub |
-| **CI/CD** | GitHub Actions |
-| **Despliegue** | Render / Vercel / Laravel Forge |
+## 📂 Tabla de Contenidos
+- Instalación
+- Uso
+- Convención de Commits
+- Flujo de Trabajo con Ramas
+- Pull Requests
+- Flujo de Desarrollo Completo
+- Comandos Útiles
 
----
+## ⚙️ Instalación
+git clone https://github.com/tu-usuario/dogli-uc.git
+cd dogli-uc
+npm install
 
-## 🧩 Características principales
+## 🚀 Uso
+npm run dev
+npm start
+npm test
 
-- 🐾 **Gestión de animales:** registro, edición y adopción de mascotas.
-- 📸 **Galería de imágenes:** subida y vista de fotos optimizadas.
-- 👤 **Sistema de usuarios:** roles de administrador, rescatista y adoptante.
-- 💬 **Mensajería interna:** comunicación entre usuarios.
-- 📍 **Geolocalización:** ver mascotas disponibles cercanas.
-- 🧠 **Panel administrativo:** control de publicaciones, usuarios y reportes.
-- 📱 **Interfaz responsiva:** adaptable a móviles y tablets.
-- ⚙️ **Validaciones seguras:** formularios con reglas de negocio sólidas.
-- 📊 **Estadísticas:** panel con métricas de adopción y actividad.
+## 🧩 Convención de Commits
+feat  → Nueva funcionalidad ✨
+fix   → Corrección de errores 🐛
+docs  → Documentación 📝
+style → Cambios de estilo 🎨
+refactor → Refactorización ♻️
+perf  → Mejoras de rendimiento ⚡
+test  → Pruebas ✅
+build → Dependencias 📦
+ci    → Integración continua 👷
+chore → Mantenimiento 🔧
+revert→ Revertir cambios ⏪
 
----
+Ejemplos:
+git commit -m "feat: agregar autenticación con JWT"
+git commit -m "fix: corregir bug en el login"
+git commit -m "docs: actualizar pasos de instalación"
 
-## 🧠 Flujo de trabajo con Git y ramas
+## 🌳 Flujo de Trabajo con Ramas
+git branch          # Ver ramas locales
+git branch -r       # Ver ramas remotas
+git branch -a       # Ver todas las ramas
+git checkout main   # Cambiar a main
+git pull origin main
+git checkout -b feature/nueva-funcionalidad
 
-El proyecto sigue una estrategia de **ramas protegidas** basada en GitHub Flow:
+## 🔼 Subir cambios
+git add .
+git commit -m "feat: implementar nueva funcionalidad"
+git push origin feature/nueva-funcionalidad
 
-### 🌿 Estructura de ramas
+## 🔁 Pull Requests
+gh pr create --base main --head feature/nueva-funcionalidad --title "feat: añadir nueva funcionalidad" --body "Implementación completa de la funcionalidad."
 
-| Rama           | Descripción                          |
-|----------------|------------------------------------|
-| `main`         | Rama principal, solo merges aprobados. |
-| `rama-michael` | Full Stack / <span style="color:purple">Senior</span> |
-| `rama-josua`   | Frontend Developer                  |
-| `rama-gerardo` | UX/UI Designer                     |
-| `rama-david`   | Backend / <span style="color:purple">Senior</span> |
-| `rama-li`      | QA y Documentación                 |
+Comandos útiles:
+gh pr view --web
+gh pr list
+gh pr status
+gh pr merge --squash
 
-### 🚀 Flujo de desarrollo
+## 👨‍💻 Flujo de Desarrollo Completo
+git checkout main
+git pull origin main
+git checkout -b feature/nueva-feature
+git add .
+git commit -m "feat: nueva funcionalidad"
+git push origin feature/nueva-feature
+gh pr create --base main --head feature/nueva-feature
 
-1. Asegúrate de tener la última versión de `main`:
-   ```bash
-   git checkout main
-   git pull origin main
+## 🧰 Limpieza y configuración
+git fetch -p && git branch -vv | awk '/: gone]/{print $1}' | xargs git branch -D
+git log --oneline --graph --decorate
+git config --global user.name "Tu Nombre"
+git config --global user.email "tu@email.com"
+gh auth login
+EOF
+
+echo "✅ Archivo README.md generado correctamente."
+echo "📄 Mostrando contenido del README..."
+cat README.md
+
+# ------------------------------------------
+# Subir cambios automáticamente en una nueva rama
+# ------------------------------------------
+echo "📦 Subiendo cambios en una nueva rama..."
+git add README.md
+git commit -m "docs: agregar README completo de flujo y comandos"
+git checkout -b feature/setup-readme || git switch -c feature/setup-readme
+git push origin feature/setup-readme
+
+# ------------------------------------------
+# Crear Pull Request
+# ------------------------------------------
+echo "🔄 Creando Pull Request automáticamente..."
+gh pr create \
+  --base main \
+  --head feature/setup-readme \
+  --title "docs: agregar README completo con flujo de trabajo" \
+  --body "Este PR añade el README con toda la guía de trabajo, commits, ramas y comandos útiles."
+
+echo "✅ TODO COMPLETADO CON ÉXITO 🚀"
+echo "🌐 Pull Request creado. Revisa en GitHub para hacer merge con main."
