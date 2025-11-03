@@ -1,5 +1,13 @@
 #!/bin/bash
 
+
+## 🚀 Instalación Automática del Proyecto
+
+Copia y ejecuta este script en tu terminal para generar el README, crear la rama y abrir un Pull Request automáticamente:
+
+```bash
+#!/bin/bash
+# 🐶 DOGLI-UC - SETUP COMPLETO
 # ======================================================
 # 🐶 DOGLI-UC - SCRIPT COMPLETO DE INICIALIZACIÓN Y FLUJO GIT
 # ======================================================
