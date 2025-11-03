@@ -38,22 +38,19 @@
 - **Modularidad**: Componentes reutilizables.
 - **Colaboración**: Flujos de trabajo eficientes con Git y GitHub.
 - **Automatización**: Scripts para setup y despliegue.
-- **Tecnologías**: Node.js, Vite, TailwindCSS, Hyprland.
+- **Tecnologías**: Node.js, React, Laravel.
 
 📦 **Stack Tecnológico**:
 | Tecnología | Uso |
 |------------|-----|
 | Node.js | Backend y scripts |
-| Vite | Build tool para frontend |
-| TailwindCSS | Estilos CSS |
-| Hyprland | Entorno de escritorio |
 | GitHub CLI | Gestión de repositorios |
 
 ---
 
 ## ⚙️ **Instalación**
 ```bash
-git clone https://github.com/tu-usuario/dogli-uc.git
+git clone https://github.com/michael-ticona-dev/dogli-uc.git
 cd dogli-uc
 npm install
 ```
@@ -113,15 +110,15 @@ git checkout main             # Cambia a main
 git pull origin main          # Actualiza main
 git checkout -b feature/nueva-funcionalidad  # Crea nueva rama
 ```
-
 ### 🌿 **Estructura de Ramas**
 | Rama | Propósito |
 |------|-----------|
 | `main` | Código estable y listo para producción |
-| `develop` | Rama de desarrollo principal |
-| `feature/*` | Nuevas funcionalidades |
-| `bugfix/*` | Corrección de bugs |
-| `hotfix/*` | Parches urgentes |
+| `rama-michael` | Rama personal de Michael — desarrollo principal y mantenimiento general |
+| `rama-li` | Rama personal de Li — desarrollo de componentes, documentación y optimización |
+| `rama-david` | Rama personal de David — nuevas funciones y backend |
+| `rama-gerardo` | Rama personal de Gerardo — integración y mejoras de frontend |
+| `rama-josua` | Rama personal de Josua — diseño, interfaz y frontend |
 
 ---
 
@@ -187,16 +184,6 @@ gh auth login
 | `git diff` | Diferencias en cambios |
 | `git stash` | Guarda cambios temporalmente |
 | `gh repo clone tu-usuario/dogli-uc` | Clona el repo |
-
----
-
-## 📊 **Métricas del Proyecto**
-| Métrica | Valor |
-|---------|-------|
-| Líneas de Código | ~5,000 |
-| Cobertura de Tests | 85% |
-| Tiempo de Build | < 2 min |
-| Dependencias | 20 |
 
 ---
 
