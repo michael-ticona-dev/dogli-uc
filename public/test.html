@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Vite Connection</title>
+</head>
+<body>
+    <h1>Test de Conexión Vite</h1>
+    <div id="status">Cargando...</div>
+    <script type="module">
+        const status = document.getElementById('status');
+        try {
+            const response = await fetch('http://127.0.0.1:5173/@vite/client');
+            if (response.ok) {
+                status.textContent = '✅ Vite está funcionando correctamente';
+                status.style.color = 'green';
+            } else {
+                status.textContent = '❌ Vite no responde correctamente';
+                status.style.color = 'red';
+            }
+        } catch (error) {
+            status.textContent = '❌ Error al conectar con Vite: ' + error.message;
+            status.style.color = 'red';
+        }
+    </script>
+</body>
+</html>
+

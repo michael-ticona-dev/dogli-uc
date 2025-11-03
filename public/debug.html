@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug - Vite e Inertia</title>
+</head>
+<body>
+    <h1>Diagnóstico de Vite e Inertia</h1>
+    <div id="status"></div>
+    <script type="module">
+        const status = document.getElementById('status');
+        const tests = [];
+        
+        // Test 1: Verificar conexión con Vite
+        try {
+            const viteResponse = await fetch('http://127.0.0.1:5173/@vite/client');
+            if (viteResponse.ok) {
+                tests.push('✅ Vite está accesible');
+            } else {
+                tests.push('❌ Vite no responde correctamente: ' + viteResponse.status);
+            }
+        } catch (error) {
+            tests.push('❌ Error al conectar con Vite: ' + error.message);
+        }
+        
+        // Test 2: Verificar app.tsx
+        try {
+            const appResponse = await fetch('http://127.0.0.1:5173/resources/js/app.tsx');
+            if (appResponse.ok) {
+                tests.push('✅ app.tsx está accesible');
+            } else {
+                tests.push('❌ app.tsx no responde: ' + appResponse.status);
+            }
+        } catch (error) {
+            tests.push('❌ Error al cargar app.tsx: ' + error.message);
+        }
+        
+        // Test 3: Verificar welcome.tsx
+        try {
+            const welcomeResponse = await fetch('http://127.0.0.1:5173/resources/js/pages/welcome.tsx');
+            if (welcomeResponse.ok) {
+                tests.push('✅ welcome.tsx está accesible');
+            } else {
+                tests.push('❌ welcome.tsx no responde: ' + welcomeResponse.status);
+            }
+        } catch (error) {
+            tests.push('❌ Error al cargar welcome.tsx: ' + error.message);
+        }
+        
+        // Test 4: Intentar importar React
+        try {
+            const reactModule = await import('http://127.0.0.1:5173/node_modules/.vite/deps/react.js?v=b3595906');
+            tests.push('✅ React se puede importar');
+        } catch (error) {
+            tests.push('❌ Error al importar React: ' + error.message);
+        }
+        
+        status.innerHTML = '<ul>' + tests.map(test => '<li>' + test + '</li>').join('') + '</ul>';
+    </script>
+</body>
+</html>
+

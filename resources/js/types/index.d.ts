@@ -2,7 +2,7 @@ import { InertiaLinkProps } from '@inertiajs/react';
 import { LucideIcon } from 'lucide-react';
 
 export interface Auth {
-    user: User;
+    user: User | null;
 }
 
 export interface BreadcrumbItem {
@@ -25,7 +25,9 @@ export interface NavItem {
 export interface SharedData {
     name: string;
     quote: { message: string; author: string };
-    auth: Auth;
+    auth: {
+        user: User | null;
+    };
     sidebarOpen: boolean;
     [key: string]: unknown;
 }

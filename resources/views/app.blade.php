@@ -19,6 +19,7 @@
             })();
         </script>
 
+
         {{-- Inline style to set the HTML background color based on our theme in app.css --}}
         <style>
             html {
@@ -30,7 +31,7 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name',     'Laravel') }}</title>
 
         <link rel="icon" href="/favicon.ico" sizes="any">
         <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -45,5 +46,36 @@
     </head>
     <body class="font-sans antialiased">
         @inertia
+        
+        {{-- Script de diagnóstico para verificar que Inertia se está cargando --}}
+        <script>
+            window.addEventListener('DOMContentLoaded', function() {
+                const app = document.getElementById('app');
+                if (app) {
+                    console.log('✅ Elemento #app encontrado');
+                    const dataPage = app.getAttribute('data-page');
+                    if (dataPage) {
+                        console.log('✅ Atributo data-page encontrado');
+                        try {
+                            const pageData = JSON.parse(dataPage);
+                            console.log('✅ Datos de Inertia:', pageData);
+                        } catch (e) {
+                            console.error('❌ Error al parsear data-page:', e);
+                        }
+                    } else {
+                        console.error('❌ No se encontró el atributo data-page');
+                    }
+                } else {
+                    console.error('❌ No se encontró el elemento #app');
+                }
+            });
+            
+            // Verificar si los scripts de Vite se cargan
+            window.addEventListener('error', function(e) {
+                if (e.message && e.message.includes('vite') || e.filename && e.filename.includes('5173')) {
+                    console.error('❌ Error al cargar Vite:', e.message, e.filename);
+                }
+            }, true);
+        </script>
     </body>
 </html>
