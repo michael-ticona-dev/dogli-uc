@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Etapa 4/4: Elige tu Plan de Publicación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="icon" href="https://www.perro-perdido.com/favicon.ico">
+    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.perro-perdido.com/css/styles.css?v=20251006180000">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style_pasos.css">
+    <style>
+        :root {
+            /* Variables CSS inferidas de style_pasos.css */
+            --color-primario: #5C6BC0; 
+            --color-secundario: #87b0b7;
+            --color-morado-claro: #D1C4E9;
+            --color-blanco: #FFFFFF;
+            --color-texto-oscuro: #333333;
+            --borde-suave: 12px;
+            --sombra-interactiva: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --sombra-flotante: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        body {
+            background-color: #f8f9fa; /* Fondo gris claro de Bootstrap */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* 1. Tarjeta de Plan Moderna */
+        .plan-card {
+            background-color: var(--color-blanco);
+            border: 2px solid #e9ecef; /* Borde sutil */
+            border-radius: var(--borde-suave);
+            box-shadow: var(--sombra-interactiva);
+            transition: all 0.3s ease;
+        }
+        
+        .plan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--sombra-flotante);
+        }
+
+        /* 2. Tarjeta Recomendada (Resaltada) */
+        .plan-card.highlighted {
+            border-color: var(--color-primario);
+            border-width: 3px;
+            box-shadow: var(--sombra-flotante);
+            position: relative;
+        }
+
+        /* 3. Ribbon (Cinta) Moderno para la tarjeta destacada */
+        .modern-ribbon {
+            position: absolute;
+            top: -15px; /* Sube la cinta */
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            padding: 6px 20px;
+            border-radius: 50px; /* Forma de píldora */
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        /* 4. Encabezado de la Tarjeta */
+        .plan-header {
+            text-align: center;
+            padding: 1.5rem 1.5rem 1rem 1.5rem;
+        }
+        .plan-title {
+            font-weight: 700;
+            color: var(--color-texto-oscuro);
+            font-size: 1.5rem;
+        }
+        .plan-price {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--color-primario);
+            margin: 0;
+        }
+        .plan-price.free {
+            color: #28a745; /* Verde Bootstrap */
+        }
+
+        /* 5. Lista de Características (Ordenada) */
+        .plan-features {
+            list-style: none;
+            padding: 0 1.5rem 1.5rem 1.5rem;
+            margin: 0;
+            flex-grow: 1; /* Empuja el botón al fondo */
+        }
+        .plan-feature-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .plan-feature-item:last-child {
+            border-bottom: none;
+        }
+        .plan-feature-item i {
+            margin-top: 4px; /* Alinea el icono con la primera línea de texto */
+        }
+
+        /* 6. Botón de Acción (Reutilizando .submit-button de style_pasos.css) */
+        .btn-plan-select {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            background-color: var(--color-primario);
+            color: var(--color-blanco);
+            border: 2px solid var(--color-primario);
+        }
+
+        .btn-plan-select.outline {
+            background-color: var(--color-blanco);
+            color: var(--color-primario);
+        }
+
+        .btn-plan-select:hover {
+            background-color: #485496; /* Primario más oscuro */
+            color: var(--color-blanco);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 7. Contenedor del Ranger (Opción 3) */
+        .ranger-container {
+            background-color: #f8f9fa; /* bg-light */
+            border-radius: var(--borde-suave);
+            border: 1px solid #e9ecef;
+            margin: 1rem 0;
+        }
+        .ranger-container .btn-primary {
+            background-color: var(--color-primario) !important;
+            border: none !important;
+        }
+    </style>
+    
+    </head>
+<body class="page-loaded chien">
+
+    <a href="../Inicio/index.html" class="floating-home-button" title="Regresar a la página principal">
+        <i class="bi bi-house-door-fill"></i> Regresar a Inicio
+    </a>
+
+    
+    <main>
+        <div class="container">
+            
+            <div class="text-center my-5">
+                <h1 class="display-4 font-weight-bold" style="color: var(--color-primario);">Elige tu Plan de Visibilidad</h1>
+                <p class="lead text-muted">Selecciona la mejor opción para encontrar a tu perro lo antes posible.</p>
+            </div>
+            
+            <div class="alert alert-info border-0 shadow-sm" style="border-radius: var(--borde-suave);" role="alert">
+                <i class="bi bi-info-circle-fill mr-2"></i>
+                Por favor, selecciona una de las opciones abajo para finalizar la publicación de tu anuncio.
+            </div>
+        </div>
+
+        <section class="py-4">
+            <div class="container-lg px-0 px-lg-3">
+                <form method="post">
+                    <div class="block-product-publication">
+                        <input type="hidden" name="email" value="asda@gmail.com">
+                        
+                        <div class="row justify-content-center py-3">
+                            
+                            <div class="col-lg-4 col-md-8 mb-4 d-flex">
+                                <div class="card plan-card h-100 d-flex flex-column">
+                                    <div class="plan-header">
+                                        <h3 class="plan-title">Opción 1</h3>
+                                        <p class="text-muted small text-uppercase">Publicación Simple</p>
+                                        <div class="plan-price free">Gratis</div>
+                                    </div>
+                                    
+                                    <ul class="plan-features">
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Difusión en el sitio web (sin límite de tiempo)</span>
+                                        </li>
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Alertas e-mail a la Red de Alerta</span>
+                                        </li>
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Cartel imprimible con código QR</span>
+                                        </li>
+                                        <li class="plan-feature-item text-muted">
+                                            <i class="bi bi-x-circle-fill text-danger"></i>
+                                            <span>Difusión en Facebook/Instagram</span>
+                                        </li>
+                                        <li class="plan-feature-item text-muted">
+                                            <i class="bi bi-x-circle-fill text-danger"></i>
+                                            <span>Publicidad patrocinada en Facebook</span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="p-4 mt-auto">
+                                        <a href="check.html" class="submit-button" role="button">Elegir plan gratuito</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-8 mb-4 d-flex">
+                                <div class="card plan-card highlighted h-100 d-flex flex-column">
+                                    <div class="modern-ribbon">Opción más elegida</div>
+                                    <div class="plan-header">
+                                        <h3 class="plan-title">Opción 2</h3>
+                                        <p class="text-muted small text-uppercase">Anuncio Prioritario</p>
+                                        <div class="plan-price">S/.7,00</div>
+                                    </div>
+                                    
+                                    <ul class="plan-features">
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Difusión en el sitio web (sin límite de tiempo)</span>
+                                        </li>
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Alertas por correo electrónico</span>
+                                        </li>
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Cartel imprimible con código QR</span>
+                                        </li>
+                                        <li class="plan-feature-item font-weight-bold">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Difusión en <strong>Facebook</strong> y <strong>Instagram</strong></span>
+                                        </li>
+                                        <li class="plan-feature-item text-muted">
+                                            <i class="bi bi-x-circle-fill text-danger"></i>
+                                            <span>Publicidad patrocinada en Facebook</span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="p-4 mt-auto">
+                                        <a href="check.html" class="submit-button" role="button">Elegir plan</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-lg-4 col-md-8 mb-4 d-flex">
+                                <div class="card plan-card h-100 d-flex flex-column">
+                                    <div class="plan-header">
+                                        <h3 class="plan-title">Opción 3</h3>
+                                        <p class="text-muted small text-uppercase">Visibilidad Máxima</p>
+                                        <div class="plan-price text-danger" id="price-card-3-display">S/. 32,00</div>
+                                    </div>
+                                    
+                                    <ul class="plan-features">
+                                        <li class="plan-feature-item">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span>Todo lo del Plan 2 (Sitio Web, Email, RRSS)</span>
+                                        </li>
+                                        <li class="plan-feature-item font-weight-bold">
+                                            <i class="bi bi-check-circle-fill text-success"></i>
+                                            <span><strong>Publicidad en Facebook</strong> (Alertas a vecinos)</span>
+                                        </li>
+                                    </ul>
+                                    
+                                    <div class="ranger-container mx-3 my-3">
+                                        <div class="card-body p-3 text-center">
+                                            <img src="https://www.perro-perdido.com/images/facebook_logo_320x320.png" alt="Facebook" class="mw-100 m-auto mb-2" width="40" />
+                                            <p class="small text-dark mb-2">Ajusta el radio de la alerta (km):</p>
+                                            
+                                            <div class="m-auto">
+                                                <div class="input-group ranger flex-nowrap">
+                                                    <div class="input-group-prepend">
+                                                        <div class="btn btn-primary btn-ranger-decrement">
+                                                            <i class="bi bi-dash"></i>
+                                                        </div>
+                                                    </div>
+                                                    <input type="text" class="ranger-input form-control bg-white text-center placeholder cursor-initial" pattern='[0-9]+' value="0" readonly data-suffix=" km" data-effect="distance" style="width:120px;">
+                                                    <div id="effect-wrapper"></div>
+                                                    <input name="facebook_ad_distance" type="hidden" class="ranger-config bg-white text-center" value="5" data-min="5" data-max="999" data-base="700" data-step-base-amount="500" data-step-rate="100" data-currency-symbol="S/." data-symbol-position="suffix" data-decimal="," data-has-decimal="true" data-target-price-update="#price-card-3-display">
+                                                    <div class="input-group-append">
+                                                        <div class="btn btn-primary btn-ranger-increment">
+                                                            <i class="bi bi-plus"></i>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="p-4 mt-auto">
+                                        <a href="check.html" class="submit-button" role="button">Elegir plan</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="my-4 text-center d-none d-md-block line-height-1-25">
+                            <input id="cgv" name="cgv" type="hidden" value="true">
+                            <small>Al continuar, acepto los <a href="https://www.perro-perdido.com/es-es/condiciones-de-compra" target="_blank">Términos y Condiciones Generales de Venta</a> del sitio.</small>
+                        </div>
+
+                        <template id="ranger-effect-increment">
+                            <div class="ranger-effect increment"><div class="rounded-circle border border-success w-100 h-100"><div class="rounded-circle border border-success w-100 h-100"><div class="rounded-circle border border-success bg-success w-100 h-100"></div></div></div></div>
+                        </template>
+                        <template id="ranger-effect-decrement">
+                            <div class="ranger-effect decrement"><div class="rounded-circle border border-warning w-100 h-100"><div class="rounded-circle border border-warning w-100 h-100"><div class="rounded-circle border border-warning bg-warning w-100 h-100"></div></div></div></div>
+                        </template>
+                    </div>
+                </form>
+                <script>    	$('html, body').animate(	{		scrollTop: ($('.has-danger').offset().top - 50)	}, 500);    </script>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="alert alert-light border d-flex align-items-center justify-content-center mt-3" role="alert">
+                <div class="d-flex flex-wrap justify-content-center align-items-center">
+                    <img src="https://www.perro-perdido.com/images/payment/lock.svg" alt="HTTPS: pago seguro" height="20" class="mx-2">
+                    <span>HTTPS: pago seguro</span>
+                    </div>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="block-offers-compare">
+                <h2 class="text-center mb-4">Compare las opciones</h2>
+                <div class="table-responsive bg-white rounded shadow-sm" style="border-radius: var(--borde-suave);">
+                    <table class="table table-striped table-border border-light mb-0" id="table-compaison-options">
+                        <thead class="border-light">
+                            <tr>
+                                <th scope="col"></th>
+                                <th scope="col" class="text-center">
+                                    <span class="d-none d-md-inline">Publicación simple</span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span class="d-none d-md-inline">Anuncio prioritario</span>
+                                </th>
+                                <th scope="col" class="text-center">
+                                    <span class="d-none d-md-inline">Visibilidad máxima</span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Visualización de su anuncio en el sitio sin límite de tiempo</td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Cartel imprimible con código QR</td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>1 envío por correo a los suscriptores de la Red de Alerta</td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Difusión en la página de Facebook</td>
+                                <td class="text-center align-middle"><i class="bi bi-x-circle-fill options-availability text-danger"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Difusión de un vídeo en la cuenta de Instagram</td>
+                                <td class="text-center align-middle"><i class="bi bi-x-circle-fill options-availability text-danger"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            <tr>
+                                <td>Difusión patrocinada en Facebook</td>
+                                <td class="text-center align-middle"><i class="bi bi-x-circle-fill options-availability text-danger"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-x-circle-fill options-availability text-danger"></i></td>
+                                <td class="text-center align-middle"><i class="bi bi-check-circle-fill options-availability text-success"></i></td>
+                            </tr>
+                            </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <script src="https://www.perro-perdido.com/lib/cookieconsent/cookieconsent.js?v=20251006180000"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    <script src="https://www.perro-perdido.com/lib/jquery.cookie/jquery.cookie.min.js?v=20251006180000"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script src="https://www.perro-perdido.com/js/ranger.js?v=20251006180000"></script>
+</body>
+</html>

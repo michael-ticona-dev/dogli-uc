@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Etapa 3/4: Foto - Publicación</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://www.perro-perdido.com/css/styles.css?v=20251006180000">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="style_pasos.css">
+    <style>
+        /* Definición de la Zona de Arrastre/Carga */
+        .drop-zone-modern {
+            min-height: 300px; 
+            border: 3px dashed var(--color-primario, #5C6BC0); /* Usando el color principal */
+            border-radius: var(--borde-suave, 12px); /* Usando el radio de borde */
+            box-shadow: var(--sombra-interactiva, 0 4px 8px rgba(0, 0, 0, 0.1));
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--color-blanco, #FFFFFF);
+            margin-top: 30px;
+        }
+
+        /* Feedback visual: Hover y Dragover */
+        .drop-zone-modern:hover, .drop-zone-modern.dragover {
+            border-color: #5C6BC0; /* Color primario */
+            background-color: var(--color-morado-claro, #F7F7FF); /* Fondo claro para indicar interacción */
+            box-shadow: var(--sombra-flotante, 0 8px 16px rgba(0, 0, 0, 0.15));
+        }
+
+        /* Ocultar el input y hacerlo cubrir toda la zona */
+        .drop-zone-modern input[type="file"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0; /* Invisible, pero clicable */
+            z-index: 10;
+            cursor: pointer;
+        }
+
+        /* Feedback visual de éxito */
+        .drop-zone-modern.file-selected {
+            border-color: #28a745 !important; /* Verde de éxito de Bootstrap */
+            background-color: #d4edda !important; 
+        }
+
+        /* Estilo para el texto principal de la zona */
+        .drop-zone-text-main {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-texto-oscuro, #333333);
+        }
+
+        /* Usando la clase submit-button de style_pasos.css */
+        .submit-button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: var(--borde-suave, 12px);
+            background-color: var(--color-primario, #5C6BC0);
+            color: var(--color-blanco, #FFFFFF);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .submit-button:hover {
+            background-color: #485496; /* Ligeramente más oscuro que --color-primario */
+            transform: translateY(-2px);
+        }
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+    </head>
+<body class="page-loaded chien">
+    <a href="../Inicio/index.html" class="floating-home-button" title="Regresar a la página principal">
+        <i class="bi bi-house-door-fill"></i> Regresar a Inicio
+    </a>
+    <main>
+        <div class="container">
+            
+            <div class="text-center mb-5">
+                <h1 class="display-4 font-weight-bold">Etapa (3/4): Foto</h1>
+                <p class="lead text-muted">La foto es la clave para encontrar a tu mascota. Sube la mejor imagen que tengas.</p>
+            </div>
+            
+            <div class="alert alert-info border-0 rounded" role="alert">
+                **Consejo:** Asegúrate de que la foto sea **clara, reciente y bien iluminada**.
+                <br>
+                Formatos soportados: **JPG, PNG, GIF** | Tamaño máximo: **10 MB**.
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <form method="post" action="https://www.perro-perdido.com/es-es/nuevo/perro-perdido" enctype="multipart/form-data">
+                        <input type="hidden" name="view" value="3">
+                        
+                        <div class="form-group">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="10485760">
+
+                            <div class="drop-zone-modern d-flex flex-column justify-content-center align-items-center p-4" id="dropZone">
+                                
+                                <input id="image" name="image" type="file" accept="image/jpeg, image/png, image/gif">
+                                
+                                <i class="bi bi-cloud-upload display-1" style="color: var(--color-primario, #5C6BC0);"></i>
+                                <p class="drop-zone-text-main mt-3">
+                                    Arrastra y suelta tu foto aquí
+                                </p>
+                                <p class="text-muted mb-0">
+                                    o haz clic para seleccionar un archivo
+                                </p>
+                                <p id="file-name-display" class="text-success font-weight-bold small mt-3"></p>
+                            </div>
+                            <button type="submit" id="image_submit" 
+                                onclick="this.disabled=true; this.form.submit(); setTimeout(() => this.disabled=false, 30000);" 
+                                class="submit-button mt-5">
+                               <a href="paso4.html" class="submit-button" role="button" style="color: aliceblue; padding: 10px 150px;">Confirmar y continuar: Paso 4 - Plan</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="mt-5 pt-3">
+                <h2 class="text-center mb-4">🏅 Un servicio serio, rápido y eficaz</h2>
+                <div class="block-stats">
+                    </div>
+            </div>
+            
+        </div>
+    </main>
+
+    <script>
+        $(document).ready(function() {
+            const $dropZone = $('#dropZone');
+            const $fileInput = $('#image');
+            const $fileNameDisplay = $('#file-name-display');
+
+            // 1. Manejar la selección normal de archivos y dar feedback visual
+            $fileInput.on('change', function() {
+                if (this.files.length > 0) {
+                    const fileName = this.files[0].name;
+                    $fileNameDisplay.html('✅ Archivo seleccionado: <strong>' + fileName + '</strong>');
+                    $dropZone.addClass('file-selected').removeClass('dragover');
+                } else {
+                    $fileNameDisplay.text('');
+                    $dropZone.removeClass('file-selected');
+                }
+            });
+
+            // 2. Prevenir el comportamiento por defecto y propagación en eventos de arrastre
+            $dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            });
+
+            // 3. Feedback visual de DragOver/DragEnter
+            $dropZone.on('dragover dragenter', function() {
+                $dropZone.addClass('dragover');
+            });
+
+            // 4. Feedback visual de DragLeave/Drop
+            $dropZone.on('dragleave drop', function() {
+                $dropZone.removeClass('dragover');
+            });
+            
+            // 5. Manejar el evento Drop para cargar el archivo en el input
+            $dropZone.on('drop', function(e) {
+                // e.originalEvent.dataTransfer es necesario para acceder a dataTransfer con jQuery
+                const files = e.originalEvent.dataTransfer.files;
+                
+                // Asignar los archivos soltados al input
+                $fileInput[0].files = files;
+                
+                // Disparar el evento 'change' manualmente
+                $fileInput.trigger('change');
+            });
+        });
+    </script>
+    </body>
+</html>

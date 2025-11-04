@@ -1,0 +1,182 @@
+/* --- Estilos para Guia.html --- */
+
+/* 1. Importación de variables de estilo (Asegúrate de que style_pasos.css exista o copia las variables aquí) */
+:root {
+    --color-primario: #5C6BC0; 
+    --color-secundario: #87b0b7;
+    --color-morado-claro: #D1C4E9;
+    --color-blanco: #FFFFFF;
+    --color-texto-oscuro: #333333;
+    --borde-suave: 12px;
+    --sombra-interactiva: 0 4px 12px rgba(0, 0, 0, 0.05);
+    --sombra-flotante: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+body {
+    background-color: #f8f9fa; /* Fondo gris claro de Bootstrap */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Contenedor del Acordeón (Tarjeta principal) */
+.accordion-container {
+    background-color: var(--color-blanco);
+    border-radius: var(--borde-suave);
+    box-shadow: var(--sombra-flotante);
+    overflow: hidden; /* Asegura que los bordes redondeados se apliquen a los hijos */
+}
+
+/* 3. Botón del Acordeón (Innovación) */
+.accordion-header {
+    background-color: var(--color-blanco);
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #e9ecef;
+    padding: 20px 25px;
+    text-align: left;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    
+    /* Icono a la izquierda */
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative; /* Para el icono de expandir */
+}
+
+.accordion-header .icon-left {
+    color: var(--color-primario);
+    font-size: 1.5rem;
+    transition: transform 0.3s ease;
+}
+
+.accordion-header:hover {
+    background-color: #f8f9fa; /* Fondo gris claro al pasar el mouse */
+}
+
+/* 4. Icono de Expandir/Colapsar (El "+" y "-") */
+.accordion-header::after {
+    content: '\002B'; /* Símbolo '+' */
+    font-family: 'bootstrap-icons'; /* Asegura que use los iconos */
+    content: '\F630'; /* Icono 'plus-lg' de Bootstrap Icons */
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: var(--color-primario);
+    position: absolute;
+    right: 25px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 5. Estilos del Acordeón Activo (Cuando está abierto) */
+.accordion-header.active {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    border-bottom: 1px solid var(--color-primario);
+}
+
+.accordion-header.active .icon-left {
+    color: var(--color-blanco);
+    transform: scale(1.1); /* Efecto sutil en el icono principal */
+}
+
+.accordion-header.active::after {
+    content: '\F424'; /* Icono 'dash-lg' (menos) de Bootstrap Icons */
+    transform: rotate(180deg);
+    color: var(--color-blanco);
+}
+
+/* 6. Panel de Contenido (Innovación: Animación suave) */
+.accordion-panel {
+    max-height: 0; /* Oculto por defecto */
+    overflow: hidden;
+    background-color: #fdfdfd;
+    transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1); /* Animación suave */
+}
+
+.panel-content {
+    padding: 25px 30px;
+    font-size: 1rem;
+    line-height: 1.7;
+}
+
+/* 7. Estilo para los enlaces "muertos" (Constraint 2) */
+.panel-content a {
+    color: var(--color-primario); /* Mantiene el color para que parezca un enlace */
+    text-decoration: none;
+    font-weight: 600;
+    cursor: default; /* El cursor no cambia a "mano" */
+}
+
+
+
+   #header {
+        background-color: transparent; /* Permite ver el color del header */
+        padding: 0rem 0;
+        display: flex;
+    }
+
+    /* Barra de Navegación principal */
+    #menu {
+        background-color: var(--color-celeste); /* Color de fondo de la barra */
+        padding: 0;
+        margin-top: -2rem; /* Subir la barra un poco para que se vea más integrada */
+        box-shadow: var(--sombra-interactiva);
+    }
+    
+    /* Menú Desktop */
+    #menu .mx-auto.hideOnMobile {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+    }
+
+    #menu a {
+        color: var(--color-texto-oscuro);
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        border-radius: 0; /* Quitar borde para un look moderno */
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Animación de HOVER para la barra de navegación */
+    #menu a:hover {
+        background-color: var(--color-primario);
+        color: var(--color-blanco);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación de CLICK (Active) para la barra de navegación */
+    #menu a:active {
+        background-color: #4CAF50; /* Un color de click distintivo */
+        transform: translateY(1px);
+    }
+
+    /* Menú Mobile */
+    .menu-mob a {
+        /* Asegurarse que el móvil también tenga hover moderno */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu-mob a:hover {
+        background-color: var(--color-morado-claro);
+    }
+
+
+    /* CÓDIGO CSS A MODIFICAR */
+.logo {
+    margin-top: 100px;;
+    display: block;
+    pointer-events: none;
+
+    /* ESTA ES LA PROPIEDAD QUE DEBES CAMBIAR */
+
+    background-size: contain;
+    background-repeat: no-repeat;
+}
