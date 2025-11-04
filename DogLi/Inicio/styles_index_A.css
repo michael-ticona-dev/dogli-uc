@@ -1,11 +1,11 @@
 
     :root {
         /* Paleta de colores solicitada */
-        --color-celeste: #B3E0FF; /* Celeste Bebé */
+        --color-celeste: #cfecff; /* Celeste Bebé */
         --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
         --color-blanco: #FFFFFF;
         --color-texto-oscuro: #333333;
-        --color-primario: #5C6BC0; /* Un azul/morado más oscuro para contraste */
+        --color-primario: #001dac; /* Un azul/morado más oscuro para contraste */
         
         /* Definición de esquinas suavizadas */
         --borde-suave: 12px;
@@ -19,7 +19,7 @@
     background-color: var(--color-blanco);
     color: var(--color-texto-oscuro);
     opacity: 0;
-    background-color: rgba(212, 243, 255, 0.696);
+    background-color: rgba(245, 225, 255, 0.759);
     
 }
 
@@ -111,8 +111,8 @@
 
     /* Animación de HOVER para la barra de navegación */
     #menu a:hover {
-        background-color: var(--color-primario);
-        color: var(--color-blanco);
+        background-color: var(--color-morado-claro);
+        color: var(--color-texto-oscuro);
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
 

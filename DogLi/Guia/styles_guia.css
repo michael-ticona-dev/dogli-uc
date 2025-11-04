@@ -169,14 +169,10 @@ body {
     }
 
 
-    /* CÓDIGO CSS A MODIFICAR */
 .logo {
     margin-top: 100px;;
     display: block;
     pointer-events: none;
-
-    /* ESTA ES LA PROPIEDAD QUE DEBES CAMBIAR */
-
     background-size: contain;
     background-repeat: no-repeat;
 }

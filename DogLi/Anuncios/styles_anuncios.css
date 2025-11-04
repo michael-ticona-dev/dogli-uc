@@ -1,11 +1,11 @@
 
     :root {
         /* Paleta de colores solicitada */
-        --color-celeste: #d6b3ff; /* Celeste Bebé */
+        --color-celeste: #d1fffd; /* Celeste Bebé */
         --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
-        --color-blanco: #FFFFFF;
+        --color-blanco: #e2fffe;
         --color-texto-oscuro: #333333;
-        --color-primario: #be9eff; /* Un azul/morado más oscuro para contraste */
+        --color-primario: #4fa9e1; /* Un azul/morado más oscuro para contraste */
         
         /* Definición de esquinas suavizadas */
         --borde-suave: 12px;
@@ -19,7 +19,7 @@
     background-color: var(--color-blanco);
     color: var(--color-texto-oscuro);
     opacity: 0;
-    background-color: #d5aeff9c;
+    background-color: var(--color-celeste);
     
 }
 
@@ -86,7 +86,7 @@
 
     /* Barra de Navegación principal */
     #menu {
-        background-color: var(--color-celeste); /* Color de fondo de la barra */
+        background-color: var(--color-primario); /* Color de fondo de la barra */
         padding: 0;
         margin-top: -2rem; /* Subir la barra un poco para que se vea más integrada */
         box-shadow: var(--sombra-interactiva);
@@ -404,7 +404,6 @@
     --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
     --color-blanco: #FFFFFF;
     --color-texto-oscuro: #333333;
-    --color-primario: #5C6BC0; 
     --borde-suave-largo: 18px; /* Borde más suave para las tarjetas */
     --sombra-moderna: 0 10px 25px rgba(0, 0, 0, 0.15);
     /* Colores semánticos */

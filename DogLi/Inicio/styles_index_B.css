@@ -32,7 +32,7 @@
 
 /* CHIEN */
 .chien #header, .chien #menu, .chien #footer {
-  background-color: var(--color-chien-2);
+  background-color: var(--color-chat-1);
 }
 
 .chien #menu .menu-mob a.active {
