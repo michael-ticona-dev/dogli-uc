@@ -2,9 +2,9 @@ name: CI Completa (Lint + Build + Tests)
 
 on:
   push:
-    branches: [rama-li]
+    branches: ['**']
   pull_request:
-    branches: [main, develop]
+    branches: ['**']
 
 jobs:
   ci:
