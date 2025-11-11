@@ -1,0 +1,461 @@
+   :root {
+        /* Paleta de colores solicitada */
+        --color-celeste: #B3E0FF; /* Celeste Bebé */
+        --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
+        --color-blanco: #FFFFFF;
+        --color-texto-oscuro: #333333;
+        --color-primario: #5C6BC0; /* Un azul/morado más oscuro para contraste */
+        
+        /* Definición de esquinas suavizadas */
+        --borde-suave: 12px;
+        --sombra-flotante: 0 8px 16px rgba(0, 0, 0, 0.15);
+        --sombra-interactiva: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* --- Estilos Globales y Estructura --- */
+
+@keyframes revealBlur {
+    from {
+        opacity: 0;
+        filter: blur(5px); /* Inicia borroso */
+        transform: scale(0.90); /* Inicia ligeramente encogido */
+        
+    }
+    to {
+        opacity: 1;
+        filter: blur(0); /* Termina nítido */
+        transform: scale(1); /* Termina en tamaño normal */
+       
+    }
+}
+
+/* 3. Clase de activación: El JS añade esta clase para iniciar la animación */
+.page-loaded {
+    /* 🛑 CAMBIA 'fadeIn' por 'revealBlur' */
+    animation: revealBlur 0.8s ease-out forwards; /* Aumenté el tiempo a 1.2s para que se vea mejor el blur/scale */
+    opacity: 1; 
+}
+
+.slide-from-left {
+    transform: translateX(-50px); /* Posición inicial: 50px hacia la izquierda */
+}
+
+
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Suavizado de esquinas para elementos clave */
+    #header, nav, main section > div {
+        border-radius: var(--borde-suave);
+    }
+
+    .block-news-hero, .block-stats, .block-news-process, .block-news-cta, .block-items-h .cards .card, .block-benefits .cards .card, .block-ratings .cards .card, .btn, select {
+        border-radius: var(--borde-suave);
+        overflow: hidden; /* Para que las imágenes dentro se ajusten */
+    }
+
+    /* --- Barra de Navegación Moderna (Header/Nav) --- */
+    
+    header {
+        background-color: var(--color-morado-claro);
+        box-shadow: var(--sombra-interactiva);
+        margin-bottom: 2em;
+    }
+    
+    #top {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    #header {
+        background-color: transparent; /* Permite ver el color del header */
+        padding: 0rem 0;
+        display: flex;
+    }
+
+    /* Barra de Navegación principal */
+    #menu {
+        background-color: var(--color-celeste); /* Color de fondo de la barra */
+        padding: 0;
+        margin-top: -2rem; /* Subir la barra un poco para que se vea más integrada */
+        box-shadow: var(--sombra-interactiva);
+        width: 100%;
+    }
+    
+    /* Menú Desktop */
+    #menu .mx-auto.hideOnMobile {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+    }
+
+    #menu a {
+        color: var(--color-texto-oscuro);
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        border-radius: 0; /* Quitar borde para un look moderno */
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Animación de HOVER para la barra de navegación */
+    #menu a:hover {
+        background-color: var(--color-primario);
+        color: var(--color-blanco);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación de CLICK (Active) para la barra de navegación */
+    #menu a:active {
+        background-color: #4CAF50; /* Un color de click distintivo */
+        transform: translateY(1px);
+    }
+
+    /* Menú Mobile */
+    .menu-mob a {
+        /* Asegurarse que el móvil también tenga hover moderno */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu-mob a:hover {
+        background-color: var(--color-morado-claro);
+    }
+
+
+
+
+
+
+
+
+    /* Paleta y Variables */
+
+
+
+
+
+
+
+
+
+
+
+
+:root {
+    --color-primary: #5C6BC0; /* Azul/Morado */
+    --color-secondary: #D1C4E9; /* Lavanda */
+    --color-success: #66BB6A; /* Verde para Encontrado */
+    --color-danger: #EF5350; /* Rojo para Perdido */
+    --color-background: #F4F6F8; /* Fondo suave */
+    --color-white: #FFFFFF;
+    --color-text-dark: #333333;
+    --color-text-light: #777777;
+    --border-radius: 15px; /* Bordes suavizados */
+    --box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra elegante */
+}
+
+/* --- Estilos Generales y Centrado (Responsive) --- */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.center-content {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; 
+    padding-top: 50px; /* Margen superior para centrado visual */
+}
+
+/* --- Contenedor Principal (Tarjetas) --- */
+.main-container, .form-card {
+    background-color: var(--color-white);
+    padding: 30px;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 600px; /* Ancho máximo para legibilidad */
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+/* --- Botones de Selección (index.html) --- */
+.button-group {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap; 
+    justify-content: center;
+}
+
+.action-button {
+    text-decoration: none;
+    color: var(--color-white);
+    padding: 20px 30px;
+    border-radius: var(--border-radius);
+    flex-grow: 1;
+    min-width: 250px;
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 600;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.button-lost { background-color: var(--color-danger); }
+.button-found { background-color: var(--color-success); }
+
+.action-button i { font-size: 2.5rem; }
+
+.action-button:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* --- Título de Sección en el Formulario --- */
+.section-title {
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 30px 0 15px 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid var(--color-secondary);
+    font-size: 1.1rem;
+}
+
+/* --- INNOVACIÓN 1: Floating Labels para Text/Textarea/Select --- */
+.input-group {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.input-group input, .input-group textarea, .custom-select {
+    width: 100%;
+    padding: 15px 12px 5px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 1rem;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    background-color: transparent;
+    color: var(--color-text-dark);
+}
+
+.input-group textarea {
+    padding-top: 25px; 
+    resize: vertical;
+}
+
+/* Label que flota */
+.input-group label {
+    position: absolute;
+    top: 15px; 
+    left: 12px;
+    color: var(--color-text-light);
+    pointer-events: none;
+    transition: 0.3s ease-out;
+    background-color: var(--color-white);
+    padding: 0 4px;
+    font-size: 1rem;
+}
+
+/* Mover la etiqueta cuando el campo está enfocado O tiene contenido */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label,
+.input-group textarea:focus + label,
+.input-group textarea:not(:placeholder-shown) + label {
+    top: -10px; 
+    left: 8px;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    transform: scale(0.9);
+}
+
+.input-group input:focus, .input-group textarea:focus, .custom-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(92, 107, 192, 0.2);
+    outline: none;
+}
+
+/* Estilo para el Select */
+.input-group .custom-select {
+    padding: 15px 12px;
+    -webkit-appearance: none; 
+    -moz-appearance: none;
+    appearance: none;
+    /* Flecha personalizada para select */
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="rgb(92, 107, 192)" d="M7 10l5 5 5-5z"/></svg>') no-repeat right 10px center;
+    background-size: 20px;
+}
+
+/* Como el select es obligatorio y siempre tiene una opción seleccionada, 
+   su label debe permanecer flotando */
+.input-group select + label {
+    top: -10px; 
+    left: 8px;
+    font-size: 0.8rem;
+    color: var(--color-primary);
+    transform: scale(0.9);
+}
+
+
+/* --- INNOVACIÓN 2: Card-Selector para Radio Buttons (Género) --- */
+.input-label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--color-text-dark);
+}
+
+.card-selector-group {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.card-selector-group input[type="radio"] {
+    display: none; /* Ocultar el radio button nativo */
+}
+
+.card-selector {
+    flex: 1;
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 12px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background-color: var(--color-white);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-selector:hover {
+    border-color: var(--color-secondary);
+}
+
+/* Estilo cuando está seleccionado */
+.card-selector-group input[type="radio"]:checked + .card-selector {
+    border-color: var(--color-primary);
+    background-color: var(--color-secondary);
+    box-shadow: 0 4px 15px rgba(92, 107, 192, 0.2);
+    transform: scale(1.02);
+}
+
+.card-selector .icon {
+    font-size: 1.5rem;
+    margin-top: 5px;
+}
+
+/* --- Botón de Enviar --- */
+.submit-button {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: var(--border-radius);
+    background-color: var(--color-primary);
+    color: var(--color-white) !important; /* <--- Asegura que el texto sea blanco */
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    
+    /* Reglas para anular el estilo de enlace por defecto */
+    text-decoration: none !important; /* <--- Elimina el subrayado de los enlaces */
+    display: block; /* <--- Asegura que tome el ancho completo si es un <a> */
+    text-align: center; /* <--- Centra el texto */
+}
+
+.submit-button:hover {
+    background-color: #455a8e; 
+    transform: translateY(-2px);
+}
+
+/* --- Responsive Design (Ajustes para móviles) --- */
+@media (max-width: 768px) {
+    .center-content {
+        padding-top: 20px;
+    }
+    
+    .main-container, .form-card {
+        padding: 20px;
+        margin: 0 10px;
+    }
+    
+    /* Pone los botones de selección uno encima del otro */
+    .button-group, .card-selector-group {
+        flex-direction: column;
+    }
+
+    .action-button {
+        min-width: unset;
+        width: 100%;
+    }
+}
+
+
+
+.floating-home-button {
+    /* Posicionamiento Fijo (Superpone a todo) */
+    position: fixed;
+    top: 20px;       /* Distancia desde la parte superior */
+    left: 20px;      /* Distancia desde el borde izquierdo */
+    z-index: 1050;   /* Asegura que esté por encima de casi todo (ej. modals de Bootstrap son 1040) */
+
+    /* Estilo Moderno y Llamativo */
+    background-color: var(--color-primario); /* Usando tu color principal */
+    color: white;
+    text-decoration: none; /* Elimina el subrayado por defecto */
+    padding: 10px 15px;
+    border-radius: var(--borde-suave); /* Usando tus esquinas suavizadas */
+    box-shadow: var(--sombra-flotante); /* Sombra para darle profundidad */
+    font-weight: 600;
+    font-size: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    
+    /* Animación Elegante */
+    transform: translateX(-100%); /* Inicia fuera de la pantalla (a la izquierda) */
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1); /* Curva de animación suave */
+}
+
+/* 2. Estilo y Animación Hover */
+.floating-home-button:hover {
+    background-color: #485496; /* Un tono un poco más oscuro al pasar el ratón */
+    transform: translateX(0) scale(1.05); /* Se desplaza y se agranda ligeramente */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* 3. Animación de Entrada (Se activa cuando la página carga) */
+/* La clase 'page-loaded' se añade comúnmente al cuerpo al cargar (como en tus JS), 
+   pero si no existe, puedes usar un pequeño JS para añadirla, o un @keyframes. */
+   
+/* Suponiendo que tu body tiene una clase de activación de carga: */
+body.page-loaded .floating-home-button {
+    transform: translateX(0); /* Se desliza a su posición final */
+    opacity: 1;
+    /* Retrasamos la animación ligeramente para que entre después de la revelación de la página */
+    transition-delay: 0.3s; 
+}

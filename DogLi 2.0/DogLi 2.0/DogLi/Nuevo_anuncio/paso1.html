@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Anuncio</title>
+    <link rel="stylesheet" href="style_pasos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+
+</head>
+
+
+
+
+<body class="page-loaded center-content">
+<a href="../Inicio/index.html" class="floating-home-button" title="Regresar a la página principal">
+        <i class="bi bi-house-door-fill"></i> Regresar a Inicio
+    </a>
+    
+
+    <div class="form-card">
+        <h2 id="form-titulo">Nuevo Anuncio</h2>
+        <form id="anuncio-form">
+
+            <div class="input-group conditional-field" id="campo-nombre-perro" style="display: none;">
+                <input type="text" id="nombre-perro" name="nombre_perro" placeholder=" " autocomplete="off">
+                <label for="nombre-perro">Nombre del perro *</label>
+            </div>
+
+            <div class="section-title">🐕 Características Físicas</div>
+
+
+
+
+            <label class="input-label">Tamaño *</label>
+            <div class="card-selector-group size-selector">
+                <input type="radio" id="tamano-peq" name="tamano" value="Pequeño" required>
+                <label for="tamano-peq" class="card-selector">
+                    <span>Pequeño</span>
+                    <i class="icon">🐶</i>
+                </label>
+
+
+
+
+                
+
+                <input type="radio" id="tamano-med" name="tamano" value="Mediano" required>
+                <label for="tamano-med" class="card-selector">
+                    <span>Mediano</span>
+                    <i class="icon">🐕</i>
+                </label>
+
+
+
+                
+                <input type="radio" id="tamano-gran" name="tamano" value="Grande" required>
+                <label for="tamano-gran" class="card-selector">
+                    <span>Grande</span>
+                    <i class="icon">🐺</i>
+                </label>
+            </div>
+            
+            <div class="input-group">
+                <input type="text" id="raza" name="raza" placeholder=" " autocomplete="off" required>
+                <label for="raza">Raza (Ej. Labrador, Mestizo) *</label>
+            </div>
+
+            <div class="input-group">
+                <label for="color-principal">Color Principal *</label>
+                <select id="color-principal" name="color_principal" required class="custom-select">
+                    <option value="" disabled selected>Seleccione el Color Principal</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="color-secundario">Color Secundario (Opcional)</label>
+                 <select id="color-secundario" name="color_secundario" class="custom-select">
+                    <option value="" selected>No aplica o no visible</option>
+                </select>
+            </div>
+
+            <label class="input-label">Tipo de Pelo *</label>
+            <div class="card-selector-group size-selector">
+                <input type="radio" id="pelo-corto" name="pelo" value="Corto" required>
+                <label for="pelo-corto" class="card-selector">Corto</label>
+
+                <input type="radio" id="pelo-largo" name="pelo" value="Largo" required>
+                <label for="pelo-largo" class="card-selector">Largo</label>
+                
+                <input type="radio" id="pelo-duro" name="pelo" value="Duro/Rizado" required>
+                <label for="pelo-duro" class="card-selector">Duro/Rizado</label>
+            </div>
+
+            <label class="input-label">Patrón de Pelaje *</label>
+            <div class="card-selector-group size-selector">
+                <input type="radio" id="pelaje-solido" name="pelaje" value="Sólido" required>
+                <label for="pelaje-solido" class="card-selector">Sólido</label>
+
+                <input type="radio" id="pelaje-manchas" name="pelaje" value="Manchas/Pinto" required>
+                <label for="pelaje-manchas" class="card-selector">Manchas/Pinto</label>
+                
+                <input type="radio" id="pelaje-atigrado" name="pelaje" value="Atigrado/Merlé" required>
+                <label for="pelaje-atigrado" class="card-selector">Atigrado/Merlé</label>
+            </div>
+
+            <label class="input-label">Tipo de Orejas *</label>
+            <div class="card-selector-group size-selector">
+                <input type="radio" id="orejas-paradas" name="orejas" value="Paradas/Erectas" required>
+                <label for="orejas-paradas" class="card-selector">Paradas</label>
+
+                <input type="radio" id="orejas-caidas" name="orejas" value="Caídas/Colgantes" required>
+                <label for="orejas-caidas" class="card-selector">Caídas</label>
+                
+                <input type="radio" id="orejas-semi" name="orejas" value="Semi-erectas" required>
+                <label for="orejas-semi" class="card-selector">Semi-erectas</label>
+            </div>
+
+            
+            <div class="section-title">📍 Lugar del Suceso</div>
+            
+            <div class="input-group">
+                <label for="distrito">Distrito de Arequipa *</label>
+                <select id="distrito" name="distrito" required class="custom-select">
+                    </select>
+            </div>
+
+            <div class="input-group">
+                <input type="text" id="calle" name="calle" placeholder=" " autocomplete="off" required>
+                <label for="calle">Calle, Avenida o Referencia *</label>
+            </div>
+
+            <div class="section-title">📝 Contexto y Detalles Adicionales</div>
+
+            <div class="input-group">
+                <textarea id="contexto" name="contexto" placeholder=" " rows="4" required></textarea>
+                <label for="contexto">¿Qué pasó? Detalles de lo ocurrido, comportamiento del perro, u otra información relevante (Ej. Si estaba herido, hora exacta, si llevaba correa de color, etc.) *</label>
+            </div>
+
+            <div class="section-title">📞 Información de Contacto</div>
+
+            <div class="input-group">
+                <input type="text" id="contacto" name="contacto" placeholder=" " autocomplete="off" required>
+                <label for="contacto">Teléfono de contacto *</label>
+            </div>
+            
+          <button type="button" id="btn-continuar-paso1" class="submit-button">Confirmar y continuar: Paso 2 - Ubicación</button>
+
+
+        </form>
+    </div>
+
+    <script src="script_pasos.js"></script>
+</body>
+</html>

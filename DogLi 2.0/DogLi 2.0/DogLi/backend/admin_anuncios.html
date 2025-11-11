@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administración de Anuncios - DogLi</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        .admin-header {
+            background: linear-gradient(135deg, #5C6BC0 0%, #87b0b7 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .anuncio-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .btn-eliminar {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+        .btn-eliminar:hover {
+            background-color: #c82333;
+            border-color: #bd2130;
+        }
+        .search-box {
+            margin-bottom: 30px;
+        }
+        .badge-activo {
+            background-color: #28a745;
+        }
+        .badge-inactivo {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="admin-header text-center">
+            <h1><i class="bi bi-shield-check"></i> Administración de Anuncios</h1>
+            <p class="mb-0">Gestiona los anuncios de perros perdidos y encontrados</p>
+        </div>
+
+        <div class="search-box">
+            <div class="input-group">
+                <input type="text" class="form-control" id="buscarAnuncio" placeholder="Buscar por nombre del perro...">
+                <div class="input-group-append">
+                    <button class="btn btn-primary" onclick="buscarAnuncios()">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                    <button class="btn btn-secondary" onclick="cargarAnuncios()">
+                        <i class="bi bi-arrow-clockwise"></i> Recargar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="mensaje" class="alert" style="display: none;"></div>
+        <div id="anunciosContainer"></div>
+        <div id="loading" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+                <span class="sr-only">Cargando...</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="../backend/api_config.js"></script>
+    <script>
+        // Cargar anuncios al iniciar
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarAnuncios();
+            
+            // Buscar al presionar Enter
+            document.getElementById('buscarAnuncio').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    buscarAnuncios();
+                }
+            });
+        });
+
+        // Función para cargar todos los anuncios (incluyendo inactivos)
+        async function cargarAnuncios() {
+            const container = document.getElementById('anunciosContainer');
+            const loading = document.getElementById('loading');
+            const mensaje = document.getElementById('mensaje');
+            
+            mensaje.style.display = 'none';
+            loading.style.display = 'block';
+            container.innerHTML = '';
+
+            try {
+                // Obtener todos los anuncios (incluyendo inactivos)
+                const response = await fetch('api_anuncios.php?all=1');
+                const result = await response.json();
+
+                if (result.success && result.data) {
+                    const anuncios = result.data;
+                    loading.style.display = 'none';
+
+                    if (anuncios.length === 0) {
+                        container.innerHTML = '<div class="alert alert-info">No hay anuncios registrados.</div>';
+                        return;
+                    }
+
+                    anuncios.forEach(anuncio => {
+                        container.innerHTML += crearTarjetaAnuncio(anuncio);
+                    });
+
+                    // Agregar event listeners a los botones de eliminar
+                    document.querySelectorAll('.btn-eliminar-anuncio').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const id = this.getAttribute('data-id');
+                            const nombre = this.getAttribute('data-nombre');
+                            eliminarAnuncio(id, nombre);
+                        });
+                    });
+                } else {
+                    loading.style.display = 'none';
+                    mostrarMensaje('Error al cargar anuncios', 'danger');
+                }
+            } catch (error) {
+                loading.style.display = 'none';
+                console.error('Error:', error);
+                mostrarMensaje('Error de conexión. Verifica que la API esté funcionando.', 'danger');
+            }
+        }
+
+        // Función para crear tarjeta de anuncio
+        function crearTarjetaAnuncio(anuncio) {
+            const estado = anuncio.activo !== undefined && anuncio.activo !== 0 ? 'activo' : 'inactivo';
+            const badgeClass = estado === 'activo' ? 'badge-activo' : 'badge-inactivo';
+            const nombre = anuncio.nombre_perro || 'Sin nombre';
+            const imagen = anuncio.imagen ? `<img src="${anuncio.imagen}" alt="${nombre}" class="img-thumbnail" style="max-width: 150px; max-height: 150px;">` : '<p class="text-muted">Sin imagen</p>';
+
+            return `
+                <div class="anuncio-card">
+                    <div class="row">
+                        <div class="col-md-2">
+                            ${imagen}
+                        </div>
+                        <div class="col-md-8">
+                            <h5>
+                                "${nombre}" 
+                                <span class="badge ${badgeClass}">${estado === 'activo' ? 'Activo' : 'Inactivo'}</span>
+                                <span class="badge badge-info">ID: ${anuncio.id}</span>
+                            </h5>
+                            <p><strong>Acción:</strong> ${anuncio.accion === 'perdido' ? 'Perdido' : 'Encontrado'}</p>
+                            <p><strong>Raza:</strong> ${anuncio.raza || 'N/A'}</p>
+                            <p><strong>Tamaño:</strong> ${anuncio.tamano || 'N/A'}</p>
+                            <p><strong>Distrito:</strong> ${anuncio.distrito || 'N/A'}</p>
+                            <p><strong>Contacto:</strong> ${anuncio.contacto || 'N/A'}</p>
+                            <p><strong>Fecha de creación:</strong> ${anuncio.fecha_creacion || 'N/A'}</p>
+                            ${anuncio.contexto ? `<p><strong>Contexto:</strong> ${anuncio.contexto.substring(0, 100)}${anuncio.contexto.length > 100 ? '...' : ''}</p>` : ''}
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button class="btn btn-eliminar btn-sm btn-eliminar-anuncio" 
+                                    data-id="${anuncio.id}" 
+                                    data-nombre="${nombre}">
+                                <i class="bi bi-trash"></i> Eliminar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Función para buscar anuncios
+        function buscarAnuncios() {
+            const busqueda = document.getElementById('buscarAnuncio').value.toLowerCase();
+            const tarjetas = document.querySelectorAll('.anuncio-card');
+
+            tarjetas.forEach(tarjeta => {
+                const texto = tarjeta.textContent.toLowerCase();
+                if (texto.includes(busqueda)) {
+                    tarjeta.style.display = '';
+                } else {
+                    tarjeta.style.display = 'none';
+                }
+            });
+        }
+
+        // Función para eliminar un anuncio
+        async function eliminarAnuncio(id, nombre) {
+            if (!confirm(`¿Estás seguro de que deseas eliminar el anuncio de "${nombre}" (ID: ${id})?`)) {
+                return;
+            }
+
+            try {
+                const response = await eliminarAnuncioAPI(id);
+                
+                if (response) {
+                    mostrarMensaje(`Anuncio de "${nombre}" eliminado exitosamente`, 'success');
+                    // Recargar anuncios después de 1 segundo
+                    setTimeout(() => {
+                        cargarAnuncios();
+                    }, 1000);
+                } else {
+                    mostrarMensaje('Error al eliminar el anuncio', 'danger');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                mostrarMensaje('Error al eliminar el anuncio: ' + error.message, 'danger');
+            }
+        }
+
+        // Función para mostrar mensajes
+        function mostrarMensaje(mensaje, tipo) {
+            const mensajeDiv = document.getElementById('mensaje');
+            mensajeDiv.className = `alert alert-${tipo}`;
+            mensajeDiv.textContent = mensaje;
+            mensajeDiv.style.display = 'block';
+
+            // Ocultar mensaje después de 5 segundos
+            setTimeout(() => {
+                mensajeDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+

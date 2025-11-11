@@ -1,0 +1,618 @@
+
+    :root {
+        /* Paleta de colores solicitada */
+        --color-celeste: #d1fffd; /* Celeste Bebé */
+        --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
+        --color-blanco: #e2fffe;
+        --color-texto-oscuro: #333333;
+        --color-primario: #4fa9e1; /* Un azul/morado más oscuro para contraste */
+        
+        /* Definición de esquinas suavizadas */
+        --borde-suave: 12px;
+        --sombra-flotante: 0 8px 16px rgba(0, 0, 0, 0.15);
+        --sombra-interactiva: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    /* --- Estilos Globales y Estructura --- */
+   body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--color-blanco);
+    color: var(--color-texto-oscuro);
+    opacity: 0;
+    background-color: var(--color-celeste);
+    
+}
+
+@keyframes revealBlur {
+    from {
+        opacity: 0;
+        filter: blur(5px); /* Inicia borroso */
+        transform: scale(0.90); /* Inicia ligeramente encogido */
+        
+    }
+    to {
+        opacity: 1;
+        filter: blur(0); /* Termina nítido */
+        transform: scale(1); /* Termina en tamaño normal */
+       
+    }
+}
+
+/* 3. Clase de activación: El JS añade esta clase para iniciar la animación */
+.page-loaded {
+    /* 🛑 CAMBIA 'fadeIn' por 'revealBlur' */
+    animation: revealBlur 0.8s ease-out forwards; /* Aumenté el tiempo a 1.2s para que se vea mejor el blur/scale */
+    opacity: 1; 
+}
+
+.slide-from-left {
+    transform: translateX(-50px); /* Posición inicial: 50px hacia la izquierda */
+}
+
+
+
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Suavizado de esquinas para elementos clave */
+    #header, nav, main section > div {
+        border-radius: var(--borde-suave);
+    }
+
+    .block-news-hero, .block-stats, .block-news-process, .block-news-cta, .block-items-h .cards .card, .block-benefits .cards .card, .block-ratings .cards .card, .btn, select {
+        border-radius: var(--borde-suave);
+        overflow: hidden; /* Para que las imágenes dentro se ajusten */
+    }
+
+    /* --- Barra de Navegación Moderna (Header/Nav) --- */
+    
+    header {
+        background-color: var(--color-morado-claro);
+        box-shadow: var(--sombra-interactiva);
+        margin-bottom: 2em;
+    }
+    
+    #top {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    }
+    
+    #header {
+        background-color: transparent; /* Permite ver el color del header */
+        padding: 0rem 0;
+        display: flex;
+    }
+
+    /* Barra de Navegación principal */
+    #menu {
+        background-color: var(--color-primario); /* Color de fondo de la barra */
+        padding: 0;
+        margin-top: -2rem; /* Subir la barra un poco para que se vea más integrada */
+        box-shadow: var(--sombra-interactiva);
+    }
+    
+    /* Menú Desktop */
+    #menu .mx-auto.hideOnMobile {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        max-width: 1200px;
+        padding: 0 1rem;
+    }
+
+    #menu a {
+        color: var(--color-texto-oscuro);
+        padding: 1rem 1.5rem;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+        border-radius: 0; /* Quitar borde para un look moderno */
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Animación de HOVER para la barra de navegación */
+    #menu a:hover {
+        background-color: var(--color-primario);
+        color: var(--color-blanco);
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Animación de CLICK (Active) para la barra de navegación */
+    #menu a:active {
+        background-color: #4CAF50; /* Un color de click distintivo */
+        transform: translateY(1px);
+    }
+
+    /* Menú Mobile */
+    .menu-mob a {
+        /* Asegurarse que el móvil también tenga hover moderno */
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .menu-mob a:hover {
+        background-color: var(--color-morado-claro);
+    }
+
+    /* --- Estilos de Botones --- */
+
+    .btn-danger, .btn-success {
+        border: none;
+        font-weight: bold;
+        padding: 0.75rem 1.5rem;
+        transition: transform 0.2s, box-shadow 0.3s;
+        border-radius: var(--borde-suave);
+    }
+
+    /* Animación de HOVER y CLICK para botones */
+    .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--sombra-flotante) !important;
+    }
+
+
+    
+    
+    .btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2) !important;
+    }
+
+    /* Colores de botones según paleta */
+    .btn-danger {
+        background-color: #E57373 !important; /* Rojo suave, adaptado a la paleta */
+    }
+
+    .btn-success {
+        background-color: #81C784 !important; /* Verde suave, adaptado a la paleta */
+    }
+
+
+    /* --- Estilos de Tarjetas y Bloques (Shadow Hover) --- */
+
+    .block-news-hero, .block-stats, .block-news-process, .block-news-cta, .block-items-h .card, .block-benefits .card, .block-ratings .card, .block-warranties .warranty {
+        padding: 1.5rem;
+        background-color: var(--color-blanco);
+        box-shadow: var(--sombra-interactiva);
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+        border: 1px solid var(--color-morado-claro); /* Borde sutil para estructura */
+    }
+
+    /* Animación de HOVER (con sombra) para tarjetas */
+    .block-items-h .card:hover, .block-benefits .card:hover, .block-ratings .card:hover, .block-warranties .warranty:hover, .block-news-cta:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--sombra-flotante);
+    }
+
+    /* Diseño específico de bloques */
+    .block-stats {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        background-color: var(--color-celeste);
+        text-align: center;
+        font-size: 1.1rem;
+        font-weight: 500;
+    }
+    
+    .block-stats span {
+        display: block;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: var(--color-primario);
+    }
+
+    /* Titulos modernos */
+    .news-top-title {
+        color: var(--color-primario);
+        font-weight: 600;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+    }
+    
+    .news-title, h1, h2 {
+        color: var(--color-texto-oscuro);
+        font-weight: 700;
+    }
+    
+    /* Estilo de los elementos 'card' en grid (para beneficios, testimonios, etc.) */
+    .block-items-h .cards, .block-benefits .cards, .block-ratings .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+    }
+    
+    .block-items-h .card img {
+        border-radius: var(--borde-suave) var(--borde-suave) 0 0;
+    }
+    
+    /* El banner principal para que destaque */
+    .block-news-hero {
+        background-color: var(--color-morado-claro);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 2rem;
+    }
+    
+    .block-news-hero .news-content {
+        max-width: 50%;
+    }
+    
+    .block-news-hero .news-image {
+        max-width: 40%;
+        height: auto;
+        border-radius: var(--borde-suave);
+    }
+
+
+
+    .block-benefits .cards {
+    /* 📱 Diseño por defecto (móvil, hasta 767px): 2 columnas */
+    display: grid;
+    /* Repetir 2 veces columnas de igual ancho (1fr) */
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px; /* Opcional: añade espacio entre las tarjetas */
+}
+
+/* 🖥️ Media Query para monitores (a partir de 768px, un tamaño común para tabletas/escritorio) */
+@media (min-width: 768px) {
+    .block-benefits .cards {
+        /* Cambia a 3 columnas */
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* CÓDIGO CSS A MODIFICAR */
+.logo {
+    display: block;
+    pointer-events: none;
+
+    /* ESTA ES LA PROPIEDAD QUE DEBES CAMBIAR */
+
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+
+
+
+
+
+
+
+    /* Media query para móviles en hero */
+    @media (max-width: 768px) {
+        .block-news-hero {
+            flex-direction: column-reverse;
+            text-align: center;
+        }
+        .block-news-hero .news-content, .block-news-hero .news-image {
+            max-width: 100%;
+        }
+    }
+
+    /* Ajuste para el select de país */
+    form[name="jump_country"] select {
+        border: 1px solid var(--color-primario);
+        background-color: var(--color-blanco);
+        padding: 0.25rem 0.5rem;
+        font-size: 0.9rem;
+        transition: box-shadow 0.3s;
+    }
+    
+    form[name="jump_country"] select:focus {
+        box-shadow: 0 0 0 0.2rem rgba(92, 107, 192, 0.25);
+        outline: none;
+    }
+
+
+
+
+
+
+
+    /* stylesss.css */
+
+/* --- AÑADE ESTOS ESTILOS NUEVOS --- */
+
+/* Estilo base para las palabras "Guau!" */
+.ladridos-texto {
+    position: fixed; /* Fija las palabras sobre todo lo demás */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centra el elemento */
+    z-index: 20; /* Asegura que esté por encima de todo */
+    font-size: 3rem; 
+    font-weight: bold;
+    color: var(--color-primario); /* Usa tu color primario */
+    opacity: 0; /* Inicia invisible */
+    pointer-events: none; /* No bloquea clics */
+    animation: ladridosTextAnimation 2s infinite    forwards; /* Aplica la animación */
+    
+    /* Posiciona el segundo "Guau!" un poco a la derecha */
+}
+#ladridosTexto2 {
+    transform: translate(-50%, -50%) translateX(100px); 
+}
+
+
+/* 1. Keyframe para las Palabras ("Guau! Guau!") */
+@keyframes ladridosTextAnimation {
+    /* Estado inicial: invisible y pequeño */
+    0% { opacity: 0; transform: scale(0.5) translateX(0); }
+    
+    /* Inicio del primer ladrido: aparece y se agranda */
+    10% { opacity: 1; transform: scale(1) translateX(0); }
+    
+    /* Fin del primer ladrido: desaparece */
+    20% { opacity: 0; transform: scale(0.8) translateX(0); } 
+
+    /* Pausa antes del segundo ladrido */
+    50% { opacity: 0; transform: scale(0.5) translateX(0); } 
+    
+    /* Inicio del segundo ladrido: aparece */
+    60% { opacity: 1; transform: scale(1) translateX(0); }
+    
+    /* Fin del segundo ladrido: desaparece */
+    70% { opacity: 0; transform: scale(0.8) translateX(0); } 
+    
+    /* Final de la animación */
+    100% { opacity: 0; }
+}
+
+
+/* 2. Keyframe para el Impulso de la Imagen */
+@keyframes ladridosImageImpulse {
+    /* La animación total dura 2 segundos (tiempo de ambos ladridos) */
+    0% { transform: scale(1); }
+    
+    /* Impulso 1: Simula el movimiento de la cabeza */
+    15% { transform: scale(1.1); } 
+    25% { transform: scale(1); }
+    
+    /* Impulso 2 */
+    65% { transform: scale(1.1); }
+    75% { transform: scale(1); }
+    
+    100% { transform: scale(1); }
+}
+
+/* 3. Clases de Activación */
+.text-bark-animate {
+    animation: ladridosTextAnimation 2s ease-in-out forwards;
+}
+.image-bark-animate {
+    animation: ladridosImageImpulse 2s ease-in-out forwards;
+}
+
+
+
+
+
+
+
+
+
+
+/* Se mantienen las variables para los colores */
+:root {
+    --color-celeste: #B3E0FF; /* Celeste Bebé */
+    --color-morado-claro: #D1C4E9; /* Morado Claro (Lavanda) */
+    --color-blanco: #FFFFFF;
+    --color-texto-oscuro: #333333;
+    --borde-suave-largo: 18px; /* Borde más suave para las tarjetas */
+    --sombra-moderna: 0 10px 25px rgba(0, 0, 0, 0.15);
+    /* Colores semánticos */
+    --color-perdido: #DC3545; /* Rojo */
+    --color-si: #28A745; /* Verde */
+    --color-no: #6C757D; /* Gris */
+}
+
+/* ----------------------------------------------------- */
+/* CLASE SOLICITADA PARA AGRUPAR EL ELEMENTO (CORREGIDA) */
+/* ----------------------------------------------------- */
+
+.anuncio-card-modern {
+    display: block;
+    width: 95%;
+    max-width: 1100px; 
+    margin: 25px auto;
+    
+    background-color: var(--color-blanco);
+    border-radius: var(--borde-suave-largo); 
+    box-shadow: var(--sombra-moderna);
+    transition: all 0.3s ease;
+    padding: 20px; /* Aumento de padding para más aire */
+    border: 2px solid var(--color-celeste); 
+}
+
+.anuncio-card-modern:hover {
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    transform: translateY(-3px);
+    border-color: var(--color-primario);
+}
+
+/* 1. Estilos para el Enlace Principal */
+.anuncio-card-modern .lienAnnonceOff {
+    display: block;
+    text-decoration: none !important;
+    color: var(--color-texto-oscuro);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* 2. Estilos del Contenedor Principal (el div.row) */
+.anuncio-card-modern .row {
+    align-items: flex-start; /* Alineación al inicio para el texto descriptivo */
+}
+
+/* 3. Estilos de la Imagen */
+.anuncio-card-modern .item-view {
+    border-radius: 12px;
+    object-fit: cover;
+    width: 100%;
+    max-width: 160px;
+    height: 160px;
+    margin: 0 auto; 
+    border: 3px solid var(--color-morado-claro);
+}
+
+/* 4. Estilos de la Descripción (col-12 col-md order3) */
+.anuncio-card-modern .anuncio-details {
+    padding-left: 15px;
+}
+
+.anuncio-card-modern .anuncio-status {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: var(--color-primario);
+    padding-bottom: 5px;
+    border-bottom: 2px dashed var(--color-celeste);
+}
+
+.anuncio-card-modern .anuncio-status .status-lost {
+    color: var(--color-perdido); /* Rojo para "perdida" */
+    font-style: italic;
+}
+
+/* Contenedor de Atributos (Tamaño, Raza, Colores, Lugar) */
+.anuncio-card-modern .anuncio-attributes p {
+    margin-bottom: 5px;
+    display: flex; /* Usar flex para alinear etiqueta y valor */
+    gap: 10px; /* Espacio entre el label y el valor */
+}
+
+.anuncio-card-modern .anuncio-attributes p span:first-child {
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    min-width: 120px; /* Ancho fijo para alinear todas las etiquetas */
+    text-align: right;
+    flex-shrink: 0;
+}
+
+/* Contenedor de Etiquetas (Chip, Tatuaje, Castrado) */
+.anuncio-card-modern .anuncio-tags {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid var(--color-morado-claro);
+    display: flex;
+    flex-wrap: wrap; /* Para que se muevan a la siguiente línea en móvil */
+    gap: 20px;
+}
+
+.anuncio-card-modern .anuncio-tags p {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.anuncio-card-modern .anuncio-tags p span:first-child {
+    font-weight: 600;
+    color: var(--color-texto-oscuro);
+    margin-right: 5px;
+}
+
+.anuncio-card-modern .tag-positive {
+    color: var(--color-si); /* Verde para "SI" */
+    font-weight: bold;
+}
+
+.anuncio-card-modern .tag-negative {
+    color: var(--color-no); /* Gris para "NO" */
+    font-weight: bold;
+}
+
+/* 5. Estilos de la Columna de Fecha/Botón */
+.anuncio-card-modern .col-md-3.text-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    text-align: right;
+    padding-top: 0;
+}
+
+.anuncio-card-modern .col-md-3 small {
+    display: block;
+    color: #6c757d; 
+    font-size: 0.85rem;
+}
+
+/* Estilos para el botón de eliminar */
+.anuncio-card-modern .btn-eliminar-anuncio {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    border-radius: 0.25rem;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+.anuncio-card-modern .btn-eliminar-anuncio:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(220, 53, 69, 0.3);
+}
+
+.anuncio-card-modern .btn-eliminar-anuncio:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.2);
+}
+
+.anuncio-card-modern .btn-eliminar-anuncio:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.anuncio-card-modern .btn-eliminar-anuncio i {
+    margin-right: 5px;
+}
+
+
+/* 6. Media Query para Móviles */
+@media (max-width: 767.98px) {
+    /* ... estilos móviles ... */
+    .anuncio-card-modern .order2 { order: 3; text-align: left !important; align-items: flex-start; }
+    .anuncio-card-modern .order3 { order: 2; margin-bottom: 15px; } 
+
+    .anuncio-card-modern .anuncio-details {
+        padding-left: 0;
+    }
+
+    .anuncio-card-modern .anuncio-attributes p {
+        flex-direction: column; /* Apila etiqueta y valor en móvil */
+        gap: 0;
+    }
+
+    .anuncio-card-modern .anuncio-attributes p span:first-child {
+        min-width: auto;
+        text-align: left;
+        color: var(--color-primario);
+    }
+
+    .anuncio-card-modern .anuncio-tags {
+        flex-direction: column; /* Apila tags en móvil */
+        gap: 5px;
+    }
+    
+    /* Botón de eliminar en móvil */
+    .anuncio-card-modern .btn-eliminar-anuncio {
+        width: 100%;
+        margin-top: 10px;
+    }
+}
+
+
+
+
+
+
+
