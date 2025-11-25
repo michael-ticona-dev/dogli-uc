@@ -1,160 +1,272 @@
-import React, { useEffect } from 'react';
-import { Head } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
+import { useEffect, useState } from 'react';
 import Header from '@/components/dogli/Header';
 import Navigation from '@/components/dogli/Navigation';
 import Footer from '@/components/dogli/Footer';
+import PetMap from '@/components/pet-map';
+import { route } from '@/lib/route';
+import type { PetCase, Pagination } from '@/types';
 
-interface Anuncio {
-    id: number;
-    nombre: string;
-    genero: string;
-    status: 'perdido' | 'encontrado';
-    fechaPerdida: string;
-    tamanio: string;
-    raza?: string;
-    colores: string;
-    pelo: string;
-    pelaje: string;
-    orejas: string;
-    lugar: string;
-    contacto: string;
-    imagen: string;
-    fechaAnuncio: string;
+interface Props {
+    cases: Pagination<PetCase>;
+    filters: {
+        type?: 'lost' | 'found' | 'adoption';
+    };
 }
 
-export default function Anuncios() {
+export default function Anuncios({ cases, filters }: Props) {
+    const [viewMode, setViewMode] = useState<'map' | 'list'>('map');
+
     useEffect(() => {
         document.body.classList.add('page-loaded');
     }, []);
 
-    // Datos de ejemplo - estos vendrán del backend
-    const anuncios: Anuncio[] = [
-        {
-            id: 384967,
-            nombre: 'Prana',
-            genero: 'perra',
-            status: 'perdido',
-            fechaPerdida: '05/10/2025',
-            tamanio: 'media',
-            colores: 'negro, marrón, blanco',
-            pelo: 'largo',
-            pelaje: 'moteado',
-            orejas: 'caídas',
-            lugar: 'Bielsa (25 - ES)',
-            contacto: '924 233 242',
-            imagen: 'https://data.perro-perdido.com/photos/3/8/4/9/6/384967_160x160_1.jpg?v=20251019202038',
-            fechaAnuncio: '19/10/2025'
-        },
-        {
-            id: 382904,
-            nombre: 'Potxolo',
-            genero: 'perro macho',
-            status: 'encontrado',
-            fechaPerdida: '29/08/2025',
-            tamanio: 'pequeña',
-            colores: 'marrón, beige',
-            pelo: 'corto',
-            pelaje: 'unido',
-            orejas: 'caídas',
-            lugar: 'Irun (20 - ES)',
-            contacto: '924 233 242',
-            imagen: 'https://data.perro-perdido.com/photos/3/8/2/9/0/382904_160x160_1.jpg?v=20250902193909',
-            fechaAnuncio: '02/09/2025'
-        },
-        {
-            id: 381353,
-            nombre: 'Floki',
-            genero: 'perro macho',
-            status: 'perdido',
-            fechaPerdida: '31/07/2025',
-            tamanio: 'pequeña',
-            raza: 'Bichón Maltés',
-            colores: 'blanco',
-            pelo: 'largo',
-            pelaje: 'unido',
-            orejas: 'mitad/mitad',
-            lugar: 'Madrid (32 - ES)',
-            contacto: '924 233 242',
-            imagen: 'https://data.perro-perdido.com/photos/3/8/1/3/5/381353_160x160_1.jpg?v=20250801220802',
-            fechaAnuncio: '01/08/2025'
-        }
-    ];
+    const filterByType = (type?: string) => {
+        router.get(route('mascotas.index'), { type }, { preserveState: true });
+    };
 
     return (
         <>
-            <Head title="Anuncios - DogLi">
-                <meta name="description" content="Ver anuncios de perros perdidos o encontrados España" />
+            <Head title="Radar de Mascotas - Ver Anuncios">
+                <meta name="description" content="Encuentra mascotas perdidas, reporta mascotas encontradas o adopta un nuevo amigo" />
             </Head>
-            <div className="chien" style={{ backgroundColor: '#f9fafb', minHeight: '100vh' }}>
+            <div className="chien" style={{ backgroundColor: '#ffffff', minHeight: '100vh' }}>
                 <Header />
                 <Navigation />
 
-                <main className="rechercher">
-                    <div className="container">
-                        <h1 style={{ marginTop: '2rem', marginBottom: '2rem' }}>
-                            Perro perdido o encontrado
+                <main className="container" style={{ marginTop: '2rem', marginBottom: '3rem' }}>
+                    {/* Header Section */}
+                    <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+                        <span className="news-top-title">Radar de Mascotas</span>
+                        <h1 className="news-title" style={{ marginTop: '0.5rem' }}>
+                            {cases.data.length} mascotas necesitan ayuda
                         </h1>
-
-                        <section className="container mb-4">
-                            <p>Tu búsqueda: ver {anuncios.length} anuncios : machos o hembras perros perdidos o encontrados España.</p>
-                            
-                            <div className="item-list">
-                                <table className="details">
-                                    <tbody>
-                                        {anuncios.map((anuncio) => (
-                                            <tr key={anuncio.id}>
-                                                <td>
-                                                    <div className="anuncio-card-modern">
-                                                        <a className="lienAnnonceOff" title={anuncio.nombre}>
-                                                            <div className="row">
-                                                                <div className="col-6 col-md-auto mb-1 order1">
-                                                                    <img
-                                                                        className="item-view"
-                                                                        data-id-item={anuncio.id}
-                                                                        src={anuncio.imagen}
-                                                                        alt={`Foto de perro ${anuncio.status} en ${anuncio.lugar}`}
-                                                                        width="160"
-                                                                        height="160"
-                                                                    />
-                                                                </div>
-                                                                <div className="col-12 col-md order3 anuncio-details">
-                                                                    <p className="anuncio-status">
-                                                                        "{anuncio.nombre}" <strong>{anuncio.genero}</strong>{' '}
-                                                                        <span className={`status-${anuncio.status}`}>
-                                                                            <strong>{anuncio.status === 'perdido' ? 'perdido' : 'encontrado'}</strong>
-                                                                        </span>{' '}
-                                                                        el {anuncio.fechaPerdida}
-                                                                    </p>
-                                                                    <div className="anuncio-attributes">
-                                                                        <p><span>Tamaño:</span> {anuncio.tamanio}</p>
-                                                                        {anuncio.raza && <p><span>Raza:</span> {anuncio.raza}</p>}
-                                                                        <p><span>Colores:</span> {anuncio.colores}</p>
-                                                                        <p><span>Pelo:</span> {anuncio.pelo}</p>
-                                                                        <p><span>Pelaje:</span> {anuncio.pelaje}</p>
-                                                                        <p><span>Orejas:</span> {anuncio.orejas}</p>
-                                                                        <p><span>Lugar:</span> {anuncio.lugar}</p>
-                                                                    </div>
-                                                                    <div className="anuncio-tags">
-                                                                        <p>
-                                                                            <span>Contacto</span>{' '}
-                                                                            <span className="tag-positive">{anuncio.contacto}</span>
-                                                                        </p>
-                                                                    </div>
-                                                                </div>
-                                                                <div className="col-6 col-md-3 text-right btn-edit order2">
-                                                                    <small>{anuncio.fechaAnuncio}</small>
-                                                                </div>
-                                                            </div>
-                                                        </a>
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </section>
+                        <p style={{ color: 'var(--color-texto-claro)', fontSize: '1.1rem' }}>
+                            Encuentra mascotas perdidas cerca de ti o reporta una mascota encontrada
+                        </p>
                     </div>
+
+                    {/* Action Buttons */}
+                    <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+                        <Link href={route('mascotas.create')} className="btn btn-danger">
+                            📍 Reportar Mascota Perdida
+                        </Link>
+                        <Link href={route('mascotas.create')} className="btn btn-success">
+                            🏠 Reportar Mascota Encontrada
+                        </Link>
+                    </div>
+
+                    {/* Filters */}
+                    <div style={{
+                        display: 'flex',
+                        justifyContent: 'space-between',
+                        alignItems: 'center',
+                        flexWrap: 'wrap',
+                        gap: '1rem',
+                        marginBottom: '2rem',
+                        padding: '1rem',
+                        backgroundColor: 'var(--color-fondo-secundario)',
+                        borderRadius: 'var(--borde-redondo)'
+                    }}>
+                        <div style={{ display: 'flex', gap: '0.5rem', flexWrap: 'wrap' }}>
+                            <button
+                                onClick={() => filterByType()}
+                                className={`btn ${!filters.type ? 'btn-danger' : ''}`}
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: !filters.type ? 'var(--color-morado)' : 'white',
+                                    color: !filters.type ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                Todas
+                            </button>
+                            <button
+                                onClick={() => filterByType('lost')}
+                                className={`btn ${filters.type === 'lost' ? 'btn-danger' : ''}`}
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: filters.type === 'lost' ? '#dc2626' : 'white',
+                                    color: filters.type === 'lost' ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                🔍 Perdidas
+                            </button>
+                            <button
+                                onClick={() => filterByType('found')}
+                                className={`btn ${filters.type === 'found' ? 'btn-success' : ''}`}
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: filters.type === 'found' ? '#16a34a' : 'white',
+                                    color: filters.type === 'found' ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                ✅ Encontradas
+                            </button>
+                            <button
+                                onClick={() => filterByType('adoption')}
+                                className={`btn ${filters.type === 'adoption' ? 'btn-success' : ''}`}
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: filters.type === 'adoption' ? 'var(--color-morado)' : 'white',
+                                    color: filters.type === 'adoption' ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                ❤️ En Adopción
+                            </button>
+                        </div>
+
+                        <div style={{ display: 'flex', gap: '0.5rem' }}>
+                            <button
+                                onClick={() => setViewMode('map')}
+                                className="btn"
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: viewMode === 'map' ? 'var(--color-morado)' : 'white',
+                                    color: viewMode === 'map' ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                🗺️ Mapa
+                            </button>
+                            <button
+                                onClick={() => setViewMode('list')}
+                                className="btn"
+                                style={{
+                                    padding: '0.5rem 1rem',
+                                    backgroundColor: viewMode === 'list' ? 'var(--color-morado)' : 'white',
+                                    color: viewMode === 'list' ? 'white' : 'var(--color-texto)'
+                                }}
+                            >
+                                📋 Lista
+                            </button>
+                        </div>
+                    </div>
+
+                    {/* Map View */}
+                    {viewMode === 'map' && (
+                        <div style={{ marginBottom: '2rem' }}>
+                            <PetMap cases={cases.data} className="h-[600px] w-full rounded-lg shadow-lg" />
+                        </div>
+                    )}
+
+                    {/* List View */}
+                    <div style={{
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+                        gap: '1.5rem'
+                    }}>
+                        {cases.data.map((petCase) => (
+                            <Link
+                                key={petCase.id}
+                                href={route('mascotas.show', petCase.id)}
+                                className="anuncio-card-modern"
+                                style={{ textDecoration: 'none', display: 'block' }}
+                            >
+                                <div style={{
+                                    aspectRatio: '16/9',
+                                    backgroundColor: 'var(--color-fondo-secundario)',
+                                    borderRadius: 'var(--borde-suave)',
+                                    marginBottom: '1rem',
+                                    overflow: 'hidden'
+                                }}>
+                                    {petCase.pet?.photo_path ? (
+                                        <img
+                                            src={petCase.pet.photo_path}
+                                            alt={petCase.pet.name}
+                                            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+                                        />
+                                    ) : (
+                                        <div style={{
+                                            width: '100%',
+                                            height: '100%',
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            justifyContent: 'center',
+                                            fontSize: '3rem'
+                                        }}>
+                                            🐾
+                                        </div>
+                                    )}
+                                </div>
+
+                                <div>
+                                    <div style={{
+                                        display: 'inline-block',
+                                        padding: '0.25rem 0.75rem',
+                                        borderRadius: '1rem',
+                                        fontSize: '0.85rem',
+                                        fontWeight: '600',
+                                        marginBottom: '0.5rem',
+                                        backgroundColor: petCase.type === 'lost' ? '#fee2e2' :
+                                            petCase.type === 'found' ? '#dcfce7' : '#f3e8ff',
+                                        color: petCase.type === 'lost' ? '#dc2626' :
+                                            petCase.type === 'found' ? '#16a34a' : '#7c3aed'
+                                    }}>
+                                        {petCase.type === 'lost' ? '🔍 Perdida' :
+                                            petCase.type === 'found' ? '✅ Encontrada' : '❤️ En Adopción'}
+                                    </div>
+
+                                    <h3 style={{
+                                        fontSize: '1.25rem',
+                                        fontWeight: '700',
+                                        marginBottom: '0.5rem',
+                                        color: 'var(--color-texto)'
+                                    }}>
+                                        {petCase.pet?.name || 'Sin nombre'}
+                                    </h3>
+
+                                    <p style={{
+                                        fontSize: '0.9rem',
+                                        color: 'var(--color-texto-claro)',
+                                        marginBottom: '0.5rem'
+                                    }}>
+                                        {petCase.pet?.species} - {petCase.pet?.breed || 'Raza desconocida'}
+                                    </p>
+
+                                    <p style={{
+                                        fontSize: '0.85rem',
+                                        color: 'var(--color-texto-claro)',
+                                        display: '-webkit-box',
+                                        WebkitLineClamp: 2,
+                                        WebkitBoxOrient: 'vertical',
+                                        overflow: 'hidden'
+                                    }}>
+                                        {petCase.description}
+                                    </p>
+
+                                    {petCase.reward_amount && (
+                                        <div style={{
+                                            marginTop: '0.75rem',
+                                            padding: '0.5rem',
+                                            backgroundColor: '#fef3c7',
+                                            borderRadius: 'var(--borde-suave)',
+                                            fontSize: '0.9rem',
+                                            fontWeight: '600',
+                                            color: '#92400e'
+                                        }}>
+                                            💰 Recompensa: S/ {petCase.reward_amount}
+                                        </div>
+                                    )}
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+
+                    {cases.data.length === 0 && (
+                        <div style={{
+                            textAlign: 'center',
+                            padding: '3rem',
+                            backgroundColor: 'var(--color-fondo-secundario)',
+                            borderRadius: 'var(--borde-redondo)'
+                        }}>
+                            <div style={{ fontSize: '4rem', marginBottom: '1rem' }}>🔍</div>
+                            <h3 style={{ fontSize: '1.5rem', marginBottom: '0.5rem' }}>
+                                No hay casos en este momento
+                            </h3>
+                            <p style={{ color: 'var(--color-texto-claro)' }}>
+                                Sé el primero en reportar una mascota
+                            </p>
+                        </div>
+                    )}
                 </main>
 
                 <Footer />
@@ -162,4 +274,3 @@ export default function Anuncios() {
         </>
     );
 }
-

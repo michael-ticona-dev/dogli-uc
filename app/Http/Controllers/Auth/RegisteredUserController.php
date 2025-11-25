@@ -33,13 +33,24 @@ class RegisteredUserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|lowercase|email|max:255|unique:'.User::class,
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'type' => 'required|in:user,shelter',
+            'phone' => 'nullable|string|max:20',
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => $request->password,
+            'type' => $request->type,
+            'phone' => $request->phone,
         ]);
+
+        // Create shelter profile if user is registering as shelter
+        if ($user->type === 'shelter') {
+            $user->shelterProfile()->create([
+                'official_name' => $request->name,
+            ]);
+        }
 
         event(new Registered($user));
 

@@ -2,6 +2,9 @@
 
 @import "tw-animate-css";
 
+/* Leaflet Map Styles */
+@import 'leaflet/dist/leaflet.css';
+
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 
@@ -149,27 +152,34 @@
 
 /* Variables CSS - Diseño Minimalista Negro y Morado */
 :root {
-    /* Colores principales - Ajustados según imagen */
-    --color-negro: #000000;
-    --color-negro-suave: #0a0a0a;
-    --color-morado: #7c3aed;
-    --color-morado-claro: #a78bfa;
-    --color-morado-oscuro: #4c1d95; /* Morado más oscuro como en la imagen */
-    --color-morado-hover: #8b5cf6;
+    /* Paleta principal (verde + coral) */
+    --color-negro: #0f172a;
+    --color-negro-suave: #1e293b;
+    --color-azul: #22c55e; /* primary now green */
+    --color-azul-claro: #ecfdf3;
+    --color-azul-hover: #16a34a;
+    --color-naranja: #fb7185; /* coral */
+    --color-naranja-claro: #ffe4e6;
+    --color-naranja-hover: #f43f5e;
+    /* Aliases legacy */
+    --color-morado: var(--color-azul);
+    --color-morado-claro: var(--color-azul-claro);
+    --color-morado-oscuro: #16a34a;
+    --color-morado-hover: var(--color-azul-hover);
     
     /* Colores de fondo */
     --color-fondo: #ffffff;
     --color-fondo-secundario: #f9fafb;
-    --color-fondo-oscuro: #0a0a0a;
+    --color-fondo-oscuro: #0f172a;
     
     /* Colores de texto */
-    --color-texto: #000000;
-    --color-texto-claro: #6b7280;
+    --color-texto: #0f172a;
+    --color-texto-claro: #64748b;
     --color-texto-blanco: #ffffff;
     
     /* Elementos */
     --color-borde: #e5e7eb;
-    --color-borde-oscuro: #1f2937;
+    --color-borde-oscuro: #94a3b8;
     
     /* Bordes y sombras */
     --borde-suave: 8px;
@@ -208,6 +218,7 @@
     background-color: var(--color-fondo);
     color: var(--color-texto);
     line-height: 1.6;
+    letter-spacing: 0.01em;
 }
 
 .container {
@@ -215,6 +226,24 @@
     margin: 0 auto;
     padding-left: var(--espaciado-md);
     padding-right: var(--espaciado-md);
+}
+
+input, select, textarea {
+    width: 100%;
+    border: 1px solid var(--color-borde);
+    border-radius: var(--borde-suave);
+    padding: 0.75rem 0.9rem;
+    font-size: 0.95rem;
+    background-color: #fff;
+    color: var(--color-texto);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid var(--color-azul);
+    outline-offset: 1px;
+    border-color: var(--color-azul);
+    box-shadow: 0 0 0 3px rgba(11, 100, 212, 0.12);
 }
 
 @media (max-width: 768px) {
@@ -277,12 +306,12 @@ header {
 }
 
 .btn-danger {
-    background-color: var(--color-negro) !important;
+    background-color: var(--color-azul) !important;
     color: var(--color-texto-blanco) !important;
 }
 
 .btn-success {
-    background-color: var(--color-morado) !important;
+    background-color: var(--color-naranja) !important;
     color: var(--color-texto-blanco) !important;
 }
 
@@ -291,12 +320,22 @@ header {
     box-shadow: var(--sombra-fuerte);
 }
 
+.btn:focus-visible {
+    outline: 2px solid var(--color-azul);
+    outline-offset: 2px;
+}
+
+.btn:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
 .btn-danger:hover {
-    background-color: var(--color-negro-suave) !important;
+    background-color: var(--color-azul-hover) !important;
 }
 
 .btn-success:hover {
-    background-color: var(--color-morado-hover) !important;
+    background-color: var(--color-naranja-hover) !important;
 }
 
 /* Bloques y Tarjetas - Minimalista */
@@ -323,7 +362,7 @@ header {
 }
 
 .hero-sidebar {
-    background-color: var(--color-morado-oscuro);
+    background: linear-gradient(135deg, var(--color-azul) 0%, #0a5ac1 100%);
     display: flex;
     align-items: flex-end;
     justify-content: flex-start;
@@ -343,7 +382,7 @@ header {
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(180deg, rgba(91, 33, 182, 0.1) 0%, transparent 50%);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, transparent 50%);
     pointer-events: none;
     z-index: 0;
 }
@@ -393,7 +432,7 @@ header {
 .hero-image-container {
     position: relative;
     height: 100%;
-    background-color: var(--color-negro);
+    background-color: var(--color-fondo);
     width: 100%;
     min-height: 100%;
     overflow: hidden;
@@ -409,13 +448,13 @@ header {
 }
 
 .block-news-hero {
-    background: linear-gradient(135deg, var(--color-negro) 0%, var(--color-morado-oscuro) 100%);
-    color: var(--color-texto-blanco);
+    background: linear-gradient(135deg, #f8fbff 0%, #eef2ff 100%);
+    color: var(--color-texto);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: var(--espaciado-xl);
-    border: none;
+    border: 1px solid var(--color-borde);
 }
 
 @media (max-width: 1024px) {

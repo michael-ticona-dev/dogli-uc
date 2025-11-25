@@ -4,6 +4,10 @@ import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
 import { initializeTheme } from './hooks/use-appearance';
+import { route } from './lib/route';
+
+// Make route function available globally
+(window as any).route = route;
 
 console.log('🚀 app.tsx está cargando...');
 
@@ -18,7 +22,7 @@ function initInertia() {
         setTimeout(initInertia, 100);
         return;
     }
-    
+
     console.log('✅ Elemento #app encontrado:', appElement);
 
     createInertiaApp({

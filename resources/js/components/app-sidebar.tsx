@@ -13,27 +13,37 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid } from 'lucide-react';
+import { Map, Heart, Home, PawPrint } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
     {
+        title: 'Inicio',
+        href: route('home'),
+        icon: Home,
+    },
+    {
         title: 'Dashboard',
-        href: dashboard(),
-        icon: LayoutGrid,
+        href: route('dashboard'),
+        icon: Home,
+    },
+    {
+        title: 'Radar de Mascotas',
+        href: route('mascotas.index'),
+        icon: Map,
+    },
+    {
+        title: 'Refugios',
+        href: route('refugios.index'),
+        icon: PawPrint,
     },
 ];
 
 const footerNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        title: 'Donar',
+        href: route('refugios.index'), // Redirect to shelters list to choose one
+        icon: Heart,
     },
 ];
 
