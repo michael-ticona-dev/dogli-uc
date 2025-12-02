@@ -57,8 +57,8 @@ export default function Index({ cases, filters }: { cases: Pagination<PetCase>, 
                                         <Link
                                             href={route('mascotas.index')}
                                             className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-150 ${!filters.type
-                                                    ? 'bg-indigo-50 text-indigo-700 shadow-sm'
-                                                    : 'text-slate-700 hover:bg-slate-50'
+                                                ? 'bg-indigo-50 text-indigo-700 shadow-sm'
+                                                : 'text-slate-700 hover:bg-slate-50'
                                                 }`}
                                         >
                                             Todas
@@ -66,8 +66,8 @@ export default function Index({ cases, filters }: { cases: Pagination<PetCase>, 
                                         <Link
                                             href={route('mascotas.index', { type: 'lost' })}
                                             className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-150 ${filters.type === 'lost'
-                                                    ? 'bg-red-50 text-red-700 shadow-sm'
-                                                    : 'text-slate-700 hover:bg-slate-50'
+                                                ? 'bg-red-50 text-red-700 shadow-sm'
+                                                : 'text-slate-700 hover:bg-slate-50'
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between">
@@ -80,8 +80,8 @@ export default function Index({ cases, filters }: { cases: Pagination<PetCase>, 
                                         <Link
                                             href={route('mascotas.index', { type: 'found' })}
                                             className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-150 ${filters.type === 'found'
-                                                    ? 'bg-green-50 text-green-700 shadow-sm'
-                                                    : 'text-slate-700 hover:bg-slate-50'
+                                                ? 'bg-green-50 text-green-700 shadow-sm'
+                                                : 'text-slate-700 hover:bg-slate-50'
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between">
@@ -94,8 +94,8 @@ export default function Index({ cases, filters }: { cases: Pagination<PetCase>, 
                                         <Link
                                             href={route('mascotas.index', { type: 'adoption' })}
                                             className={`block w-full rounded-lg px-4 py-3 text-left text-sm font-medium transition-all duration-150 ${filters.type === 'adoption'
-                                                    ? 'bg-purple-50 text-purple-700 shadow-sm'
-                                                    : 'text-slate-700 hover:bg-slate-50'
+                                                ? 'bg-purple-50 text-purple-700 shadow-sm'
+                                                : 'text-slate-700 hover:bg-slate-50'
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between">
@@ -191,10 +191,10 @@ export default function Index({ cases, filters }: { cases: Pagination<PetCase>, 
                                                 <div className="absolute top-4 right-4">
                                                     <span
                                                         className={`inline-flex items-center gap-1 rounded-full px-3 py-1 text-xs font-semibold shadow-sm backdrop-blur-sm ${petCase.type === 'lost'
-                                                                ? 'bg-red-500/90 text-white'
-                                                                : petCase.type === 'found'
-                                                                    ? 'bg-green-500/90 text-white'
-                                                                    : 'bg-purple-500/90 text-white'
+                                                            ? 'bg-red-500/90 text-white'
+                                                            : petCase.type === 'found'
+                                                                ? 'bg-green-500/90 text-white'
+                                                                : 'bg-purple-500/90 text-white'
                                                             }`}
                                                     >
                                                         {petCase.type === 'lost' ? '🔍 Perdido' :

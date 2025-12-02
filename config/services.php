@@ -35,4 +35,12 @@ return [
         ],
     ],
 
+    'aws' => [
+        'rekognition_api_url' => env('AWS_REKOGNITION_API_URL'),
+    ],
+
+    'locationiq' => [
+        'api_key' => env('LOCATIONIQ_API_KEY'),
+    ],
+
 ];

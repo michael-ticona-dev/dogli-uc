@@ -3,6 +3,7 @@ import { Head, Link } from '@inertiajs/react';
 import { route } from '@/lib/route';
 import { LayoutDashboard, ShieldCheck, AlertTriangle, LogOut, Home } from 'lucide-react';
 import { User } from '@/types';
+import AppLogo from '@/components/app-logo';
 
 interface Props {
     user: User;
@@ -22,9 +23,7 @@ export default function AdminLayout({ children, user }: PropsWithChildren<Props>
             {/* Sidebar */}
             <div className="w-64 bg-slate-900 text-white flex flex-col fixed h-full">
                 <div className="p-6">
-                    <div className="flex items-center gap-2 font-bold text-xl">
-                        <span className="text-purple-400">Admin</span>Panel
-                    </div>
+                    <AppLogo className="h-8" />
                 </div>
 
                 <nav className="flex-1 px-4 space-y-2">
@@ -33,8 +32,8 @@ export default function AdminLayout({ children, user }: PropsWithChildren<Props>
                             key={item.name}
                             href={item.href}
                             className={`flex items-center gap-3 px-4 py-3 rounded-lg transition ${window.location.pathname === item.href
-                                    ? 'bg-purple-600 text-white'
-                                    : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                ? 'bg-purple-600 text-white'
+                                : 'text-slate-400 hover:bg-slate-800 hover:text-white'
                                 }`}
                         >
                             <item.icon size={20} />

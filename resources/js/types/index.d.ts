@@ -18,6 +18,8 @@ export interface ShelterProfile {
     website?: string;
     bio?: string;
     verified_at?: string;
+    logo_path?: string;
+    banner_path?: string;
 }
 
 export interface Pet {
@@ -81,4 +83,27 @@ export interface Auth {
 export interface SharedData {
     auth: Auth;
     [key: string]: any;
+}
+
+export interface Message {
+    id: number;
+    conversation_id: number;
+    sender_id: number;
+    content: string;
+    is_read: boolean;
+    created_at: string;
+    sender?: User;
+}
+
+export interface Conversation {
+    id: number;
+    user_one_id: number;
+    user_two_id: number;
+    pet_case_id?: number;
+    created_at: string;
+    updated_at: string;
+    user_one?: User;
+    user_two?: User;
+    pet_case?: PetCase;
+    messages?: Message[];
 }

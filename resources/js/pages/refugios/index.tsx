@@ -85,11 +85,18 @@ export default function Index({ shelters }: { shelters: Pagination<User> }) {
                                         key={shelter.id}
                                         className="group relative rounded-2xl border border-slate-200 bg-white overflow-hidden shadow-sm transition-all duration-200 hover:shadow-lg hover:-translate-y-1"
                                     >
-                                        {/* Header with gradient */}
+                                        {/* Header with gradient or banner */}
                                         <div className="h-24 bg-gradient-to-br from-emerald-500 via-emerald-400 to-teal-400 relative">
+                                            {shelter.shelter_profile?.banner_path && (
+                                                <img
+                                                    src={shelter.shelter_profile.banner_path}
+                                                    alt="Banner"
+                                                    className="absolute inset-0 w-full h-full object-cover"
+                                                />
+                                            )}
                                             <div className="absolute inset-0 bg-gradient-to-br from-black/10 to-transparent" />
                                             {shelter.is_verified && (
-                                                <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-emerald-700 shadow-sm">
+                                                <div className="absolute top-3 right-3 inline-flex items-center gap-1 rounded-full bg-white/90 backdrop-blur-sm px-3 py-1 text-xs font-semibold text-emerald-700 shadow-sm z-10">
                                                     <CheckCircle className="h-3 w-3" />
                                                     Verificado
                                                 </div>
@@ -98,10 +105,18 @@ export default function Index({ shelters }: { shelters: Pagination<User> }) {
 
                                         {/* Avatar */}
                                         <div className="relative px-6 -mt-10 mb-4">
-                                            <div className="h-20 w-20 rounded-2xl border-4 border-white bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center shadow-lg">
-                                                <span className="text-3xl font-bold text-emerald-700">
-                                                    {shelter.name.charAt(0).toUpperCase()}
-                                                </span>
+                                            <div className="h-20 w-20 rounded-2xl border-4 border-white bg-gradient-to-br from-emerald-100 to-teal-100 flex items-center justify-center shadow-lg overflow-hidden">
+                                                {shelter.shelter_profile?.logo_path ? (
+                                                    <img
+                                                        src={shelter.shelter_profile.logo_path}
+                                                        alt={shelter.name}
+                                                        className="w-full h-full object-cover"
+                                                    />
+                                                ) : (
+                                                    <span className="text-3xl font-bold text-emerald-700">
+                                                        {shelter.name.charAt(0).toUpperCase()}
+                                                    </span>
+                                                )}
                                             </div>
                                         </div>
 

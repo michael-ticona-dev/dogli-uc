@@ -13,8 +13,8 @@ import {
 import { dashboard } from '@/routes';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { Map, Heart, Home, PawPrint } from 'lucide-react';
-import AppLogo from './app-logo';
+import { Map, Heart, Home, PawPrint, LayoutDashboard, Building2 } from 'lucide-react';
+import AppLogoIcon from './app-logo-icon';
 
 const mainNavItems: NavItem[] = [
     {
@@ -25,7 +25,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: route('dashboard'),
-        icon: Home,
+        icon: LayoutDashboard,
     },
     {
         title: 'Radar de Mascotas',
@@ -35,7 +35,7 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Refugios',
         href: route('refugios.index'),
-        icon: PawPrint,
+        icon: Building2,
     },
 ];
 
@@ -55,7 +55,10 @@ export function AppSidebar() {
                     <SidebarMenuItem>
                         <SidebarMenuButton size="lg" asChild>
                             <Link href={dashboard()} prefetch>
-                                <AppLogo />
+                                <div className="flex items-center gap-3">
+                                    <AppLogoIcon className="h-8 w-8" />
+                                    <span className="font-bold text-lg">DogLi UC</span>
+                                </div>
                             </Link>
                         </SidebarMenuButton>
                     </SidebarMenuItem>

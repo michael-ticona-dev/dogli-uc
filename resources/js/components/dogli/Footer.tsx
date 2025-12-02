@@ -10,7 +10,11 @@ export default function Footer() {
         <footer className="border-t border-slate-200 bg-[#F3F4F6] text-slate-700">
             <div className="mx-auto flex max-w-6xl flex-col gap-4 px-4 py-8 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                    <p className="text-lg font-bold text-slate-900">DogLi UC · Red Social de Mascotas</p>
+                    <img
+                        src="/Pagina/logo.webp"
+                        alt="DogLi UC"
+                        className="h-8 w-auto mb-2"
+                    />
                     <p className="text-sm text-slate-600">Arequipa, Perú — adopciones, refugios y recompensas geolocalizadas.</p>
                     <p className="text-xs text-slate-500">© {new Date().getFullYear()} DogLi. Comunidad segura y moderada.</p>
                 </div>

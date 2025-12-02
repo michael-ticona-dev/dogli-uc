@@ -1,9 +1,10 @@
 import AppLayout from '@/layouts/app-layout';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage, router } from '@inertiajs/react';
 import { PetCase } from '@/types';
 import PetMap from '@/components/pet-map';
 
 export default function Show({ petCase }: { petCase: PetCase }) {
+    const { auth } = usePage().props as any;
     return (
         <AppLayout
             breadcrumbs={[
@@ -20,6 +21,22 @@ export default function Show({ petCase }: { petCase: PetCase }) {
                         {/* Left Column: Details */}
                         <div className="md:col-span-2 space-y-6">
                             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                                {/* Pet Image */}
+                                <div className="mb-6 rounded-lg overflow-hidden bg-gray-100 border border-gray-200">
+                                    {petCase.pet?.photo_path ? (
+                                        <img
+                                            src={`/${petCase.pet.photo_path}`}
+                                            alt={petCase.pet.name}
+                                            className="w-full h-96 object-cover"
+                                        />
+                                    ) : (
+                                        <div className="h-96 flex items-center justify-center text-gray-400 flex-col gap-2">
+                                            <span className="text-6xl">🐾</span>
+                                            <span className="text-sm">Sin foto disponible</span>
+                                        </div>
+                                    )}
+                                </div>
+
                                 <div className="flex justify-between items-start mb-4">
                                     <div>
                                         <h1 className="text-3xl font-bold text-gray-900">{petCase.pet?.name || 'Mascota'}</h1>
@@ -79,11 +96,21 @@ export default function Show({ petCase }: { petCase: PetCase }) {
                                     </div>
                                 </div>
 
-                                <Link href={`mailto:${petCase.user?.email}`}>
-                                    <button className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition mb-2">
-                                        Contactar Usuario
-                                    </button>
-                                </Link>
+                                <button
+                                    onClick={() => {
+                                        if (!auth.user) {
+                                            window.location.href = route('login');
+                                            return;
+                                        }
+                                        router.post('/chat/start', {
+                                            user_id: petCase.user_id,
+                                            pet_case_id: petCase.id,
+                                        });
+                                    }}
+                                    className="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition mb-2"
+                                >
+                                    Contactar Usuario
+                                </button>
 
                                 {petCase.type === 'lost' && petCase.reward_amount && (
                                     <Link href={route('recompensas.create', petCase.id)}>
@@ -93,16 +120,58 @@ export default function Show({ petCase }: { petCase: PetCase }) {
                                     </Link>
                                 )}
 
-                                {petCase.user_id === (window as any).auth?.user?.id && petCase.reward_amount && (
-                                    <Link href={route('recompensas.manage', petCase.id)}>
-                                        <button className="w-full border border-purple-300 text-purple-700 py-2 rounded-md hover:bg-purple-50 transition">
-                                            ⚙️ Gestionar Reclamaciones
+                                {auth.user?.id === petCase.user_id && (
+                                    <>
+                                        <Link href={`/mascotas/${petCase.id}/edit`}>
+                                            <button className="w-full border border-blue-300 text-blue-700 py-2 rounded-md hover:bg-blue-50 transition mb-2">
+                                                ✏️ Editar Publicación
+                                            </button>
+                                        </Link>
+
+                                        <button
+                                            onClick={() => {
+                                                if (confirm('¿Estás seguro de que deseas eliminar esta publicación? Esta acción no se puede deshacer.')) {
+                                                    router.delete(`/mascotas/${petCase.id}`, {
+                                                        onSuccess: () => {
+                                                            // Success is handled by redirect in controller, but we can add a fallback
+                                                            console.log('Deleted successfully');
+                                                        },
+                                                        onError: (errors) => {
+                                                            alert('Error al eliminar: ' + JSON.stringify(errors));
+                                                        }
+                                                    });
+                                                }
+                                            }}
+                                            className="w-full border border-red-300 text-red-700 py-2 rounded-md hover:bg-red-50 transition mb-2"
+                                        >
+                                            🗑️ Eliminar Publicación
                                         </button>
-                                    </Link>
+
+                                        {petCase.reward_amount && (
+                                            <Link href={route('recompensas.manage', petCase.id)}>
+                                                <button className="w-full border border-purple-300 text-purple-700 py-2 rounded-md hover:bg-purple-50 transition mb-2">
+                                                    ⚙️ Gestionar Reclamaciones
+                                                </button>
+                                            </Link>
+                                        )}
+                                    </>
                                 )}
 
                                 {petCase.type === 'lost' && (
-                                    <button className="w-full border border-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-50 transition">
+                                    <button
+                                        onClick={() => {
+                                            if (!auth.user) {
+                                                window.location.href = route('login');
+                                                return;
+                                            }
+                                            router.post('/chat/start', {
+                                                user_id: petCase.user_id,
+                                                pet_case_id: petCase.id,
+                                                initial_message: `Hola, creo que he visto a tu mascota ${petCase.pet?.name}. Aquí tienes los detalles:`
+                                            });
+                                        }}
+                                        className="w-full border border-gray-300 text-gray-700 py-2 rounded-md hover:bg-gray-50 transition"
+                                    >
                                         📍 He visto a esta mascota
                                     </button>
                                 )}

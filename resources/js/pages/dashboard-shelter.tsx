@@ -1,9 +1,9 @@
 import AppLayout from '@/layouts/app-layout';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, router } from '@inertiajs/react';
 import { route } from '@/lib/route';
 import UserAvatar from '@/components/user-avatar';
 import { User, PetCase } from '@/types';
-import { PawPrint, Heart, Users, DollarSign, TrendingUp, Plus } from 'lucide-react';
+import { PawPrint, Heart, Users, DollarSign, TrendingUp, Plus, Edit, Trash2, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface Props {
@@ -107,25 +107,68 @@ export default function ShelterDashboard({ user, stats, recentCases }: Props) {
                         {recentCases.length > 0 ? (
                             <div className="space-y-3">
                                 {recentCases.map((petCase) => (
-                                    <Link
+                                    <div
                                         key={petCase.id}
-                                        href={route('mascotas.show', petCase.id)}
-                                        className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition"
+                                        className="flex items-center gap-4 p-3 rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition border border-gray-100 dark:border-gray-700"
                                     >
-                                        <div className="w-12 h-12 bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-900 dark:to-indigo-900 rounded-lg flex items-center justify-center text-2xl">
-                                            🐾
+                                        <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-gray-100">
+                                            {petCase.pet?.photo_path ? (
+                                                <img
+                                                    src={petCase.pet.photo_path}
+                                                    alt={petCase.pet.name}
+                                                    className="w-full h-full object-cover"
+                                                />
+                                            ) : (
+                                                <div className="w-full h-full flex items-center justify-center text-2xl">🐾</div>
+                                            )}
                                         </div>
-                                        <div className="flex-1">
-                                            <div className="font-semibold">{petCase.pet?.name || 'Sin nombre'}</div>
+                                        <div className="flex-1 min-w-0">
+                                            <div className="font-semibold truncate">{petCase.pet?.name || 'Sin nombre'}</div>
                                             <div className="text-sm text-gray-500">
                                                 {petCase.pet?.species} • {petCase.pet?.breed || 'Mestizo'}
                                             </div>
+                                            <div className="flex gap-2 mt-1">
+                                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${petCase.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}`}>
+                                                    {petCase.status === 'open' ? 'Activo' : 'Cerrado'}
+                                                </span>
+                                                <span className={`px-2 py-0.5 rounded-full text-xs font-semibold ${petCase.type === 'adoption' ? 'bg-purple-100 text-purple-700' :
+                                                        petCase.type === 'lost' ? 'bg-red-100 text-red-700' :
+                                                            'bg-blue-100 text-blue-700'
+                                                    }`}>
+                                                    {petCase.type === 'adoption' ? 'Adopción' :
+                                                        petCase.type === 'lost' ? 'Perdido' : 'Encontrado'}
+                                                </span>
+                                            </div>
                                         </div>
-                                        <div className={`px-3 py-1 rounded-full text-xs font-semibold ${petCase.status === 'open' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'
-                                            }`}>
-                                            {petCase.status === 'open' ? 'Activo' : 'Cerrado'}
+                                        <div className="flex items-center gap-1">
+                                            <Link
+                                                href={route('mascotas.show', petCase.id)}
+                                                className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                                                title="Ver detalles"
+                                            >
+                                                <Eye size={18} />
+                                            </Link>
+                                            <Link
+                                                href={route('mascotas.edit', petCase.id)}
+                                                className="p-2 text-gray-400 hover:text-blue-600 hover:bg-blue-50 rounded-lg transition"
+                                                title="Editar"
+                                            >
+                                                <Edit size={18} />
+                                            </Link>
+                                            <Link
+                                                href={`/mascotas/${petCase.id}`}
+                                                method="delete"
+                                                as="button"
+                                                onBefore={() => {
+                                                    return confirm('¿Estás seguro de que deseas eliminar esta publicación?');
+                                                }}
+                                                className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition"
+                                                title="Eliminar"
+                                            >
+                                                <Trash2 size={18} />
+                                            </Link>
                                         </div>
-                                    </Link>
+                                    </div>
                                 ))}
                             </div>
                         ) : (

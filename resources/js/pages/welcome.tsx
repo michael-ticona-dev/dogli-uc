@@ -21,7 +21,7 @@ export default function Welcome() {
                     <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 items-center justify-between">
                             <div className="flex items-center space-x-2">
-                                <Heart className="h-8 w-8 fill-red-500 text-red-500" />
+                                <img src="/Pagina/logo.webp" alt="Dogli UC" className="h-10 w-auto" />
                                 <span className="text-2xl font-bold text-gray-900 dark:text-white">
                                     Dogli UC
                                 </span>
@@ -56,34 +56,55 @@ export default function Welcome() {
                 </header>
 
                 {/* Hero Section */}
-                <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
-                    <div className="text-center">
-                        <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
-                            Encuentra un Hogar para
-                            <span className="text-blue-600 dark:text-blue-400"> Cada Mascota</span>
-                        </h1>
-                        <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-300">
-                            Conectamos a rescatistas, adoptantes y organizaciones protectoras en una
-                            plataforma digital segura para promover la adopción responsable y reducir
-                            el abandono animal.
-                        </p>
-                        <div className="mt-10 flex items-center justify-center gap-x-6">
-                            {!auth.user && (
-                                <>
-                                    <Link
-                                        href={register()}
-                                        className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-500"
-                                    >
-                                        Comenzar
-                                    </Link>
-                                    <Link
-                                        href={login()}
-                                        className="text-base font-semibold leading-6 text-gray-900 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-                                    >
-                                        Ya tengo cuenta <span aria-hidden="true">→</span>
-                                    </Link>
-                                </>
-                            )}
+                <section className="relative overflow-hidden pt-16 pb-32">
+                    <div className="absolute inset-0 z-0">
+                        <img
+                            src="/Pagina/banner.webp"
+                            alt="Background"
+                            className="h-full w-full object-cover opacity-10 dark:opacity-20"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-b from-blue-50/80 to-white/90 dark:from-gray-900/80 dark:to-gray-800/90"></div>
+                    </div>
+
+                    <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                        <div className="text-center">
+                            <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
+                                Encuentra un Hogar para
+                                <span className="text-blue-600 dark:text-blue-400"> Cada Mascota</span>
+                            </h1>
+                            <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-gray-600 dark:text-gray-300">
+                                Conectamos a rescatistas, adoptantes y organizaciones protectoras en una
+                                plataforma digital segura para promover la adopción responsable y reducir
+                                el abandono animal.
+                            </p>
+                            <div className="mt-10 flex items-center justify-center gap-x-6">
+                                {!auth.user && (
+                                    <>
+                                        <Link
+                                            href={register()}
+                                            className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-sm transition-colors hover:bg-blue-500"
+                                        >
+                                            Comenzar
+                                        </Link>
+                                        <Link
+                                            href={login()}
+                                            className="text-base font-semibold leading-6 text-gray-900 transition-colors hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+                                        >
+                                            Ya tengo cuenta <span aria-hidden="true">→</span>
+                                        </Link>
+                                    </>
+                                )}
+                            </div>
+                        </div>
+
+                        <div className="mt-16 flex justify-center">
+                            <div className="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-700 max-w-4xl w-full">
+                                <img
+                                    src="/Pagina/banner.webp"
+                                    alt="Dogli UC Banner"
+                                    className="w-full h-auto"
+                                />
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -186,7 +207,7 @@ export default function Welcome() {
                     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
                         <div className="text-center">
                             <div className="flex items-center justify-center space-x-2">
-                                <Heart className="h-6 w-6 fill-red-500 text-red-500" />
+                                <img src="/Pagina/logo.webp" alt="Dogli UC" className="h-8 w-auto" />
                                 <span className="text-xl font-bold text-gray-900 dark:text-white">
                                     Dogli UC
                                 </span>

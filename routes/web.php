@@ -21,21 +21,24 @@ Route::get('/nuevo-anuncio', function () {
 
 // Radar de Mascotas - Público
 Route::get('mascotas', [\App\Http\Controllers\MascotaController::class, 'index'])->name('mascotas.index');
-Route::get('mascotas/{mascota}', [\App\Http\Controllers\MascotaController::class, 'show'])->name('mascotas.show');
 
 // Refugios - Público
 Route::get('refugios', [\App\Http\Controllers\RefugioController::class, 'index'])->name('refugios.index');
-Route::get('refugios/{refugio}', [\App\Http\Controllers\RefugioController::class, 'show'])->name('refugios.show');
 
-Route::middleware(['auth', 'verified'])->group(function () {
+Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
 
     // Mascotas - Solo crear/editar requiere autenticación
     Route::get('mascotas/create', [\App\Http\Controllers\MascotaController::class, 'create'])->name('mascotas.create');
+    Route::get('reportar-mascota', [\App\Http\Controllers\MascotaController::class, 'create'])->name('reportar.mascota'); // Alternative route
     Route::post('mascotas', [\App\Http\Controllers\MascotaController::class, 'store'])->name('mascotas.store');
     Route::get('mascotas/{mascota}/edit', [\App\Http\Controllers\MascotaController::class, 'edit'])->name('mascotas.edit');
     Route::put('mascotas/{mascota}', [\App\Http\Controllers\MascotaController::class, 'update'])->name('mascotas.update');
     Route::delete('mascotas/{mascota}', [\App\Http\Controllers\MascotaController::class, 'destroy'])->name('mascotas.destroy');
+    
+    // Análisis de imágenes con AWS Rekognition
+    Route::post('mascotas/analyze-image', [\App\Http\Controllers\MascotaController::class, 'analyzeImage'])->name('mascotas.analyze');
+
 
     // Donaciones
     Route::get('refugios/{refugio}/donar', [\App\Http\Controllers\DonacionController::class, 'create'])->name('donaciones.create');
@@ -66,8 +69,19 @@ Route::middleware(['auth', 'verified'])->group(function () {
         // Moderation
         Route::get('/moderacion', [\App\Http\Controllers\AdminController::class, 'moderation'])->name('moderation');
         Route::post('/moderacion/{report}/resolve', [\App\Http\Controllers\AdminController::class, 'resolveReport'])->name('moderation.resolve');
+        Route::post('/moderacion/{report}/resolve', [\App\Http\Controllers\AdminController::class, 'resolveReport'])->name('moderation.resolve');
     });
+
+    // Chat Routes
+    Route::get('/chat', [\App\Http\Controllers\ChatController::class, 'index'])->name('chat.index');
+    Route::post('/chat/start', [\App\Http\Controllers\ChatController::class, 'start'])->name('chat.start'); // Specific route first
+    Route::get('/chat/{conversation}', [\App\Http\Controllers\ChatController::class, 'show'])->name('chat.show');
+    Route::post('/chat/{conversation}', [\App\Http\Controllers\ChatController::class, 'store'])->name('chat.store');
 });
+
+// Wildcard Routes (Must be last)
+Route::get('mascotas/{mascota}', [\App\Http\Controllers\MascotaController::class, 'show'])->name('mascotas.show');
+Route::get('refugios/{refugio}', [\App\Http\Controllers\RefugioController::class, 'show'])->name('refugios.show');
 
 require __DIR__.'/settings.php';
 require __DIR__.'/auth.php';
